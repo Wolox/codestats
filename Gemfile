@@ -82,6 +82,9 @@ gem 'metamagic'
 
 gem 'newrelic_rpm'
 
+# Github OAuth
+gem 'omniauth-github'
+
 group :development do
 
   # Gem to detect N+1 queries

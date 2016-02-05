@@ -31,3 +31,6 @@ coverage/*
 public/uploads
 
 dump.rdb
+
+# Ignore generated tests
+test
