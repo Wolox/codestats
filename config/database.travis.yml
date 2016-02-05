@@ -1,0 +1,5 @@
+test: &test
+  adapter: postgresql
+  encoding: utf8
+  database: codestats_test
+  username: postgres
