@@ -34,3 +34,5 @@ dump.rdb
 
 # Ignore generated tests
 test
+
+.byebug_history

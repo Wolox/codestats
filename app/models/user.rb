@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def organization
+    # TODO: Do this with groups
+    Organization.first
+  end
 end
