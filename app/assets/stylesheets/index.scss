@@ -1,0 +1,19 @@
+#repos-list {
+  .repo {
+    border-bottom: 1px solid gray;
+    padding: 15px 5px;
+    margin: 10px 0;
+    width: 100%;
+    .name {
+      max-width: 25%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+      color: #007dce;
+      line-height: inherit;
+      text-decoration: none;
+      font-size: 20px;
+    }
+  }
+}

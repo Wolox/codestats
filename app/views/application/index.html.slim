@@ -1,3 +1,10 @@
-.text-center
-  h1
-    | Welcome to Codestats
+.container
+  .text-center
+    h1
+      | Welcome to Codestats
+
+  .col-md-12#repos-list
+    - @repos.each do |repo|
+      .repo
+        .name
+          = repo.full_name

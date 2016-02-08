@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
   def index
+    @repos = GithubService.new(current_user).org_admin_repos(
+      current_user.organization.try(:name),
+      per_page: 400
+    )
   end
 end

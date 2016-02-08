@@ -235,7 +235,7 @@ Devise.setup do |config|
   config.omniauth :github,
                   Rails.application.secrets.github_client_id,
                   Rails.application.secrets.github_client_secret,
-                  scope: 'user:email'
+                  scope: 'user:email,repo'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
