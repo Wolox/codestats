@@ -6,6 +6,7 @@ AllCops:
     - spec/support/spec_helper.rb
     - spec/rails_helper.rb
     - features/support/hooks.rb
+  TargetRubyVersion: 2.3
 
 Documentation:
   Enabled: false

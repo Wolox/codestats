@@ -23,3 +23,6 @@ en:
   organizations:
     update:
       success: Organization updated!
+  projects:
+    new_banner: Choose a project to get started
+    add: 'Add Repo'

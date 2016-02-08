@@ -1,0 +1,18 @@
+.container
+  .text-center
+    h1
+      | Welcome to Codestats
+
+  .alert.alert-info.text-center
+    = t('projects.new_banner')
+
+  .col-md-12#repos-list
+    - @repos.each do |repo|
+      .repo
+        = form_tag projects_path
+          .name
+            = repo.full_name
+            = hidden_field_tag :name, repo.full_name
+          .button
+            button.btn.btn-info type='submit'
+              = t('projects.add')
