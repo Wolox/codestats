@@ -85,6 +85,10 @@ gem 'newrelic_rpm'
 # Github OAuth
 gem 'omniauth-github'
 
+gem 'octokit', '~> 4.0'
+
+gem 'faraday-http-cache'
+
 group :development do
 
   # Gem to detect N+1 queries
