@@ -1,0 +1,4 @@
+.row
+  .col-xs-8.col-xs-offset-2
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: flash_class(name)

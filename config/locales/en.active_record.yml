@@ -1,0 +1,14 @@
+es:
+  activerecord:
+    errors:
+      models:
+        organization:
+          attributes:
+            name:
+              blank: Name is required
+    models:
+      organization:
+        one: Organization
+    attributes:
+      organization:
+        name: Name
