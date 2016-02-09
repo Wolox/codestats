@@ -3,8 +3,8 @@
     h1
       | Welcome to Codestats
 
-  .col-md-12#repos-list
-    - @repos.each do |repo|
+  #repos-list.col-md-12
+    - @projects.each do |repo|
       .repo
         .name
-          = repo.full_name
+          = repo.github_repo

@@ -13,6 +13,10 @@ nav.navbar.navbar-default
       ul.nav.navbar-nav
         li
           = link_to 'Organization', edit_organization_path(current_user.organization) if current_user.organization.present?
+        li
+          = link_to 'New Project', new_project_path
+        li
+          = link_to 'Projects', root_path
       ul.nav.navbar-nav.navbar-right
         li
           = link_to 'Logout', destroy_user_session_path, method: :delete

@@ -12,4 +12,8 @@ class GithubService
   def org_repos(org, options = {})
     client.organization_repositories(org, options)
   end
+
+  def get_repo(name)
+    client.repo(name)
+  end
 end
