@@ -1,12 +1,13 @@
-- if @organization.errors.present?
-  .alert.alert-danger
-    ul
-      - @organization.errors.full_messages.each do |msg|
-        li
-          = msg
-= form_for @organization, html: { class: 'form-horizontal col-xs-8 col-xs-offset-2', role: 'form' } do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: 'form-control col-xs-2', required: true
-  .form-group
-    = f.submit nil, class: 'btn btn-primary'
+h2
+  = t('helpers.titles.edit', model: Organization)
+= render 'form', organization: @organization
+.row
+  h4
+    | Services
+  - if @organization.github_url
+    = "Github Organization: #{@organization.github_name}"
+    = link_to 'Unlink', unlink_github_organization_path(@organization), class: 'btn btn-danger pull-right', method: :post
+    = link_to 'Change', link_to_github_organization_path(@organization), class: 'btn btn-primary pull-right'
+  - else
+    = link_to 'Link To Github', link_to_github_organization_path(@organization), class: 'btn btn-primary'
+

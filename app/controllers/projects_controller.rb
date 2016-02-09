@@ -1,21 +1,22 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = current_user.organization&.projects
-    redirect_to new_project_path unless @projects.present?
+    redirect_to new_organization_project_path(organization) unless projects.present?
   end
 
   def new
+    unless organization.github_name.present?
+      return redirect_to edit_organization_path(organization),
+                         flash: { error: t('organizations.missing_github_link') }
+    end
     # TODO: this should be done over ajax so the user does not notice the delay
-    @repos = github_service.org_admin_repos(current_user.organization&.name, per_page: 400)
-    @repos.select! { |r| !existing_projects.include?(r.full_name) }
+    github_non_linked_repos
   end
 
   def create
     repo = github_service.get_repo(params[:name])
-    project = current_user.organization.projects.create(
-      name: repo.name, github_repo: repo.full_name
-    )
-    redirect_to project_path(project)
+    projects.create(name: repo.name, github_repo: repo.full_name)
+    redirect_to edit_organization_path(organization),
+                flash: { notice: t('projects.create.success') }
   end
 
   def show
@@ -24,12 +25,20 @@ class ProjectsController < ApplicationController
 
   private
 
+  def github_non_linked_repos
+    @repos = github_service.org_admin_repos(organization.github_name, per_page: 400)
+    @repos.select! { |r| projects&.pluck(:github_repo).include?(r.full_name) }
+  end
+
   def github_service
     GithubService.new(current_user)
   end
 
-  def existing_projects
-    # TODO: Add teams here
-    @existing ||= current_user.organization&.projects&.pluck(:github_repo)
+  def organization
+    @organization ||= Organization.find(params[:organization_id])
+  end
+
+  def projects
+    @projects ||= organization.projects
   end
 end

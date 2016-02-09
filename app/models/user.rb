@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  def organization
+  def organizations
     # TODO: Do this with groups
-    Organization.first
+    Organization.all
   end
 end

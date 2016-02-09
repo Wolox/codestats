@@ -1,0 +1,6 @@
+.common-list.col-xs-12
+  - @organizations.each do |org|
+    .resource
+      .name
+        = link_to org.name, edit_organization_path(org)
+

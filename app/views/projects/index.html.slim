@@ -1,10 +1,5 @@
-.container
-  .text-center
-    h1
-      | Welcome to Codestats
-
-  #repos-list.col-md-12
-    - @projects.each do |repo|
-      .repo
-        .name
-          = repo.github_repo
+.common-list.col-xs-12
+  - @projects.each do |repo|
+    .resource
+      .name
+        = repo.github_repo

@@ -21,8 +21,17 @@
 
 en:
   organizations:
+    add: 'Link Organization'
+    create:
+      success: Organization created!
+    missing_github_link: This organization is not linked to Github
+    new_banner: Choose the Github organization you want to link to %{name}
+    unlink:
+      success: Organization unlinked!
     update:
       success: Organization updated!
   projects:
-    new_banner: Choose a project to get started
     add: 'Add Repo'
+    create:
+      success: Project created!
+    new_banner: Choose a project to get started
