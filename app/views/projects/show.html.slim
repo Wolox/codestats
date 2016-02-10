@@ -1,3 +1,11 @@
 .text-center
   h1
     = @project.name
+  .common-list.col-xs-12
+    - @project.branches.order('branches.default DESC').each do |branch|
+      .resource
+        .name
+          = branch.name
+        - if branch.default
+          span.badge.green
+            = 'default'

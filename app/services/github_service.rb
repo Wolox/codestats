@@ -20,4 +20,8 @@ class GithubService
   def get_repo(name)
     client.repo(name)
   end
+
+  def branches(repo)
+    client.branches(repo)
+  end
 end

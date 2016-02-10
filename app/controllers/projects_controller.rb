@@ -14,16 +14,23 @@ class ProjectsController < ApplicationController
 
   def create
     repo = github_service.get_repo(params[:name])
-    projects.create(name: repo.name, github_repo: repo.full_name)
+    project = projects.create(name: repo.name, github_repo: repo.full_name)
+    update_branches(project)
     redirect_to edit_organization_path(organization),
                 flash: { notice: t('projects.create.success') }
   end
 
   def show
+    organization
     @project = Project.find(params[:id])
   end
 
   private
+
+  def update_branches(project)
+    return unless project.github_repo.present?
+    ProjectBranchesRetriever.perform_async(current_user.id, project.id)
+  end
 
   def github_non_linked_repos
     @repos = github_service.org_admin_repos(organization.github_name, per_page: 400)
