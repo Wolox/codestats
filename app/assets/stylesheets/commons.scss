@@ -4,6 +4,7 @@
     padding: 15px 5px;
     margin: 10px 0;
     width: 100%;
+    text-align: left;
     .name, .button {
       display: inline-block;
       vertical-align: middle;
@@ -22,4 +23,8 @@
       float: right;
     }
   }
+}
+
+.badge.green {
+  background-color: green;
 }
