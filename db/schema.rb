@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20160210120643) do
   create_table "branches", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "name"
-    t.boolean  "default"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "default",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
+  add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name", unique: true, using: :btree
   add_index "branches", ["project_id"], name: "index_branches_on_project_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|

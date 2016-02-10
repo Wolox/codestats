@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
   def show
     organization
     @project = Project.find(params[:id])
+    @branches = @project.branches.order('branches.default DESC')
   end
 
   private

@@ -1,5 +1,8 @@
 class GithubService
   attr_reader :user, :client
+
+  delegate :branches, to: :client
+
   def initialize(user)
     @user = user
     @client = Octokit::Client.new(access_token: user.auth_token)
@@ -19,9 +22,5 @@ class GithubService
 
   def get_repo(name)
     client.repo(name)
-  end
-
-  def branches(repo)
-    client.branches(repo)
   end
 end

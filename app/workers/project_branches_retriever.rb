@@ -16,7 +16,7 @@ class ProjectBranchesRetriever
 
   def create_or_update(github_branch)
     branch = project.branches.find_or_create_by(name: github_branch[:name])
-    branch.update_attributes!(default: default?(branch.name))
+    branch.update_attributes!(default: true) if default?(branch.name)
   end
 
   def default?(branch_name)

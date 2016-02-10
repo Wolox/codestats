@@ -1,5 +1,4 @@
 .common-list.col-xs-12
   - @projects.each do |repo|
     .resource
-      a.name href="#{organization_project_path(@organization, repo)}"
-        = repo.github_repo
+      = link_to repo.github_repo, organization_project_path(@organization, repo), class: 'name'
