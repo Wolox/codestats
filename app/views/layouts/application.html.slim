@@ -10,5 +10,8 @@ html
     - if user_signed_in?
       = render 'layouts/header'
     .container
+      .text-center
+        h1
+          | Codestats
       = render 'layouts/alerts'
       = yield

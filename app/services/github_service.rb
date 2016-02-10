@@ -13,6 +13,10 @@ class GithubService
     client.organization_repositories(org, options)
   end
 
+  def get_organizations(options = {})
+    client.organizations(options)
+  end
+
   def get_repo(name)
     client.repo(name)
   end

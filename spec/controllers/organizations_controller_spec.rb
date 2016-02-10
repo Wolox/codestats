@@ -34,8 +34,8 @@ RSpec.describe OrganizationsController do
         expect(organization.name).to eq(new_name)
       end
 
-      it 'redirects back to the root path' do
-        expect(response).to redirect_to root_path
+      it 'redirects back to the edit path' do
+        expect(response).to redirect_to edit_organization_path(organization)
       end
     end
 

@@ -11,13 +11,18 @@ nav.navbar.navbar-default
     /! Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        li
-          = link_to 'Organization', edit_organization_path(current_user.organization) if current_user.organization.present?
-        li
-          = link_to 'New Project', new_project_path
-        li
-          = link_to 'Projects', root_path
+        - if @organization.present? && @organization.persisted?
+          li
+             = link_to @organization.name, edit_organization_path(@organization)
+          li
+            = link_to "#{@organization.name} Projects", organization_projects_path(@organization)
+          li
+            = link_to 'New Project', new_organization_project_path(@organization)
       ul.nav.navbar-nav.navbar-right
+        li
+          = link_to 'New Organization', new_organization_path
+        li
+          = link_to 'My Organizations', organizations_path
         li
           = link_to 'Logout', destroy_user_session_path, method: :delete
     /! /.navbar-collapse
