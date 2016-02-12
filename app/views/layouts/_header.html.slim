@@ -13,17 +13,24 @@ nav.navbar.navbar-default
       ul.nav.navbar-nav
         - if @organization.present? && @organization.persisted?
           li
-             = link_to @organization.name, edit_organization_path(@organization)
-          li
-            = link_to "#{@organization.name} Projects", organization_projects_path(@organization)
-          li
-            = link_to 'New Project', new_organization_project_path(@organization)
+             = link_to @organization.name, organization_projects_path(@organization)
+          - if @project.present? && @project.persisted?
+            li
+              = link_to @project.name.camelize, organization_project_path(@organization, @project)
+            li
+              = link_to t('activerecord.models.branch.other'), organization_project_branches_path(@organization, @project)
+
       ul.nav.navbar-nav.navbar-right
+        - if @organization.present? && @organization.persisted?
+          li
+            = link_to t('projects.new'), new_organization_project_path(@organization)
+          li
+            = link_to t('organizations.edit'), organization_projects_path(@organization)
         li
-          = link_to 'New Organization', new_organization_path
+          = link_to t('organizations.new'), new_organization_path
         li
-          = link_to 'My Organizations', organizations_path
+          = link_to t('organizations.my_index'), organizations_path
         li
-          = link_to 'Logout', destroy_user_session_path, method: :delete
+          = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
     /! /.navbar-collapse
   /! /.container-fluid

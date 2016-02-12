@@ -1,0 +1,8 @@
+.common-list.col-xs-12
+  - @branches.each do |branch|
+    .resource
+      .name
+        = branch.name
+      - if branch.default
+        span.badge.green
+          = t 'default'

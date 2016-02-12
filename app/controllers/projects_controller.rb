@@ -16,14 +16,14 @@ class ProjectsController < ApplicationController
     repo = github_service.get_repo(params[:name])
     project = projects.create(name: repo.name, github_repo: repo.full_name)
     update_branches(project)
-    redirect_to edit_organization_path(organization),
+    redirect_to organization_project_path(organization, project),
                 flash: { notice: t('projects.create.success') }
   end
 
   def show
     organization
     @project = Project.find(params[:id])
-    @branches = @project.branches.order('branches.default DESC')
+    @default_branch = @project.branches.find_by(default: true)
   end
 
   private
@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
 
   def github_non_linked_repos
     @repos = github_service.org_admin_repos(organization.github_name, per_page: 400)
-    @repos.select! { |r| projects&.pluck(:github_repo).include?(r.full_name) }
+    @repos.select! { |r| !projects&.pluck(:github_repo).include?(r.full_name) }
   end
 
   def github_service

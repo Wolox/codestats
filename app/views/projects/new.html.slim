@@ -1,5 +1,5 @@
 .alert.alert-info.text-center
-  = t('projects.new_banner')
+  = t('projects.new_banner', organization: @organization.name)
 
 .common-list.col-xs-12
   - @repos.each do |repo|
