@@ -1,11 +1,7 @@
 .text-center
   h1
     = @project.name
-  .common-list.col-xs-12
-    - @branches.each do |branch|
-      .resource
-        .name
-          = branch.name
-        - if branch.default
-          span.badge.green
-            = t 'default'
+  - if @default_branch.present?
+    = "(#{@default_branch.name})"
+
+| LOTS OF METRICS

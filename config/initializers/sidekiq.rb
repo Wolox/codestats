@@ -12,7 +12,7 @@ url = if ENV['REDISCLOUD_URL']
 end
 
 Sidekiq.configure_server do |config|
-  config.redis = { size: 2, url: url }
+  config.redis = { size: 30, url: url }
 end
 
 Sidekiq.configure_client do |config|

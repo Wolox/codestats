@@ -1,4 +1,4 @@
-es:
+en:
   activerecord:
     errors:
       models:
@@ -9,6 +9,8 @@ es:
     models:
       organization:
         one: Organization
+      branch:
+        other: Branches
     attributes:
       organization:
         name: Name

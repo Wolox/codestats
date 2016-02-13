@@ -7,7 +7,9 @@ Codestats::Application.routes.draw do
       get :link_to_github
       post :unlink_github
     end
-    resources :projects, only: [:new, :create, :show, :index]
+    resources :projects, only: [:new, :create, :show, :index] do
+      resources :branches, only: [:index]
+    end
   end
 
   require 'sidekiq/web'
