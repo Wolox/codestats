@@ -8,7 +8,7 @@ Codestats::Application.routes.draw do
       post :unlink_github
     end
     resources :projects, only: [:new, :create, :show, :index] do
-      resources :branches, only: [:index]
+      resources :branches, only: [:index, :show]
     end
   end
 

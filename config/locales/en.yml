@@ -34,6 +34,8 @@ en:
       success: Organization unlinked!
     update:
       success: Organization updated!
+  metrics:
+    empty: No metrics found
   projects:
     add: Add Project
     create:

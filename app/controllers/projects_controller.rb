@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  # Always preload organization
+  before_action :organization
+
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
   end
@@ -21,9 +24,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    organization
     @project = Project.find(params[:id])
-    @default_branch = @project.branches.find_by(default: true)
+    @default_branch = @project.default_branch
+    @metrics = @default_branch.metrics
   end
 
   private
