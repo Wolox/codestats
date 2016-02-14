@@ -9,6 +9,7 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
+    @organization.teams.build(name: 'Admins', admin: true, users: [current_user])
     if @organization.save
       redirect_to edit_organization_path(@organization),
                   flash: { success: t('organizations.create.success') }
@@ -19,6 +20,7 @@ class OrganizationsController < ApplicationController
 
   def edit
     organization
+    @teams = organization.teams.includes(:users)
   end
 
   def link_to_github

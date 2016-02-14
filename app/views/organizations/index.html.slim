@@ -1,6 +1,9 @@
 .common-list.col-xs-12
   - @organizations.each do |org|
     .resource
+      - if org.github_avatar_url.present?
+        .avatar
+          = image_tag org.github_avatar_url
       .name
         = link_to org.name, organization_projects_path(org)
 

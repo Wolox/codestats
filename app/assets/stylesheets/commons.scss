@@ -9,6 +9,11 @@
       display: inline-block;
       vertical-align: middle;
     }
+    .avatar img{
+      float: left;
+      width: 30px;
+      margin-right: 10px;
+    }
     .name {
       max-width: 25%;
       text-overflow: ellipsis;

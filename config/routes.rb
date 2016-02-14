@@ -10,6 +10,14 @@ Codestats::Application.routes.draw do
     resources :projects, only: [:new, :create, :show, :index] do
       resources :branches, only: [:index, :show]
     end
+    resources :teams do
+      member do
+        post :delete_user
+        post :delete_project
+        post :add_user
+        post :add_project
+      end
+    end
   end
 
   # API Endpoints

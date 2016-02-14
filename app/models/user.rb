@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
+  has_and_belongs_to_many :teams
+
   def self.from_omniauth(auth)
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |f_user|
       f_user.provider = auth.provider
@@ -15,7 +17,6 @@ class User < ActiveRecord::Base
   end
 
   def organizations
-    # TODO: Do this with groups
-    Organization.all
+    UserOrganizationsQuery.new(self).fetch
   end
 end

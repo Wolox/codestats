@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :branches, dependent: :destroy
+  has_and_belongs_to_many :teams
 
   def default_branch
     branches.find_by(default: true)
