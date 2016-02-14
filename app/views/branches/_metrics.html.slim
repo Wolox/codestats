@@ -1,10 +1,12 @@
 .common-list.col-xs-12
-  - unless metrics.present?
+  - if metrics.present?
+    - metrics.each do |metric|
+      .resource
+        .name
+          = "#{metric.name} - #{metric.value}"
+        - if metric.url.present?
+          .button
+            = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
+  - else
     = t('metrics.empty')
-  - metrics.each do |metric|
-    .resource
-      .name
-        = "#{metric.name} - #{metric.value}"
-      - if metric.url.present?
-        .button
-          = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
+

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :branch do
-    project create(:project)
+    project
     name { Faker::Name.name }
     default false
   end

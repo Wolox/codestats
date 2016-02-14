@@ -1,5 +1,6 @@
 class ProjectBranchesRetriever
   include Sidekiq::Worker
+  sidekiq_options retry: false
 
   def perform(user_id, project_id)
     @user_id = user_id
