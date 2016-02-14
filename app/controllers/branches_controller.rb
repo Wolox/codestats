@@ -1,13 +1,24 @@
 class BranchesController < ApplicationController
+  # Always preload organization and project
+  before_action :organization, :project
+
   def index
-    organization
     branches
+  end
+
+  def show
+    branch
+    @metrics = branch.metrics
   end
 
   private
 
   def project
     @project ||= Project.find(params[:project_id])
+  end
+
+  def branch
+    @branch ||= Branch.find(params[:id])
   end
 
   def branches

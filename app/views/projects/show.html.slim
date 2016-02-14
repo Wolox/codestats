@@ -4,4 +4,6 @@
   - if @default_branch.present?
     = "(#{@default_branch.name})"
 
-| LOTS OF METRICS
+= render 'branches/metrics', metrics: @metrics
+
+

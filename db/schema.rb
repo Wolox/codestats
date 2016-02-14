@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210120643) do
+ActiveRecord::Schema.define(version: 20160213224433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20160210120643) do
 
   add_index "branches", ["project_id", "name"], name: "index_branches_on_project_id_and_name", unique: true, using: :btree
   add_index "branches", ["project_id"], name: "index_branches_on_project_id", using: :btree
+
+  create_table "metrics", force: :cascade do |t|
+    t.integer  "branch_id"
+    t.string   "name"
+    t.string   "value"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "metrics", ["branch_id"], name: "index_metrics_on_branch_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
@@ -68,5 +79,6 @@ ActiveRecord::Schema.define(version: 20160210120643) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "branches", "projects"
+  add_foreign_key "metrics", "branches"
   add_foreign_key "projects", "organizations"
 end
