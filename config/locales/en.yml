@@ -40,5 +40,6 @@ en:
     add: Add Project
     create:
       success: Project created!
+    metrics_token: 'Use the following token to update your metrics: %{token}'
     new: Add Project
     new_banner: Choose the project you want to add to %{organization}

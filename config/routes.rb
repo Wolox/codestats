@@ -12,6 +12,11 @@ Codestats::Application.routes.draw do
     end
   end
 
+  # API Endpoints
+  api_version(module:  'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
+    resources :metrics, only: [:create]
+  end
+
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
   mount PgHero::Engine, at: 'pghero'

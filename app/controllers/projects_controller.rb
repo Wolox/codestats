@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   def create
     repo = github_service.get_repo(params[:name])
     project = projects.create(name: repo.name, github_repo: repo.full_name)
+    project.generate_metrics_token
     update_branches(project)
     redirect_to organization_project_path(organization, project),
                 flash: { notice: t('projects.create.success') }
@@ -26,7 +27,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @default_branch = @project.default_branch
-    @metrics = @default_branch.metrics
+    @metrics = @default_branch.metrics if @default_branch.present?
   end
 
   private

@@ -89,6 +89,9 @@ gem 'octokit', '~> 4.0'
 
 gem 'faraday-http-cache'
 
+# API
+gem 'versionist'
+
 group :development do
 
   # Gem to detect N+1 queries
@@ -134,6 +137,7 @@ group :test do
   gem 'rspec-mocks'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
+  gem 'rspec-sidekiq'
 
   gem 'capybara'
   gem 'formulaic'
