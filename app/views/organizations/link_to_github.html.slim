@@ -4,10 +4,13 @@
   - @github_orgs.each do |org|
     .resource
       = form_for @organization
+        - if org.avatar_url.present?
+          .avatar
+            = image_tag org.avatar_url
         .name
           = org.login
           = hidden_field_tag 'organization[github_name]', org.login
-          = hidden_field_tag 'organization[github_avatar_url]', org.avatar
+          = hidden_field_tag 'organization[github_avatar_url]', org.avatar_url
           = hidden_field_tag 'organization[github_url]', org.url
         .button
           button.btn.btn-info type='submit'

@@ -3,11 +3,34 @@ h2
 = render 'form', organization: @organization
 .row
   h4
-    | Services
+    = t('organizations.services')
   - if @organization.github_url
     = "Github Organization: #{@organization.github_name}"
     = link_to 'Unlink', unlink_github_organization_path(@organization), class: 'btn btn-danger pull-right', method: :post
     = link_to 'Change', link_to_github_organization_path(@organization), class: 'btn btn-primary pull-right'
   - else
     = link_to 'Link To Github', link_to_github_organization_path(@organization), class: 'btn btn-primary'
+.row
+  h4
+    = t('organizations.teams')
+    .pull-right
+      = link_to t('teams.new'), new_organization_team_path(@organization), class: 'btn btn-primary'
+.row
+  - if @teams.present?
+    - @teams.each do |team|
+      .team.col-xs-4
+        .panel class= (team.admin? ? 'panel-primary' : 'panel-default')
+          .panel-heading
+            h3.panel-title
+              = team.name
+              .pull-right
+                = link_to edit_organization_team_path(@organization, team) do
+                  span.glyphicon.glyphicon-pencil aria-hidden='true'
+          .panel-body
+            ul
+              - team.users.each do |user|
+                li
+                  = user.email
+
+
 

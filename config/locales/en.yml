@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  default: 'default'
+  default: default
   organizations:
     add: Link Organization
     edit: Edit Organization
@@ -34,6 +34,8 @@ en:
       success: Organization unlinked!
     update:
       success: Organization updated!
+    services: Services
+    teams: Teams
   metrics:
     empty: No metrics found
   projects:
@@ -43,3 +45,28 @@ en:
     metrics_token: 'Use the following token to update your metrics: %{token}'
     new: Add Project
     new_banner: Choose the project you want to add to %{organization}
+    new_banner: Choose a project to get started
+  teams:
+    create:
+      success: Team created!
+    destroy:
+      admin: You can't delete an Admins team
+      success: Team destroyed!
+    edit: Edit %{name} Team
+    new: Add Team
+    projects:
+      add:
+        success: 'Project added!'
+        exists: 'Project already exists in the team!'
+      delete:
+        success: 'Projected deleted!'
+        not_exists: Project doesn't exist in the team!
+    update:
+      success: Team updated!
+    users:
+      add:
+        success: 'User added!'
+        exists: 'User already exists in the team!'
+      delete:
+        success: 'User deleted!'
+        not_exists: User doesn't exist in the team!

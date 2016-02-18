@@ -1,0 +1,40 @@
+h2
+  = t('teams.edit', name: @team.name)
+= render 'form', organization: @organization, team: @team
+.row
+  = form_tag add_user_organization_team_path(@organization, @team), class: 'form-inline'
+    .form-group
+      = select_tag 'team[user_id]', options_from_collection_for_select(@new_users, 'id', 'email'), class: 'form-control'
+      = submit_tag 'Add User', class: 'btn btn-primary'
+  .col-xs-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          = "Members (#{@team.users.size})"
+      .panel-body
+        ul.list-unstyled
+          - @team.users.each do |user|
+            li
+              = user.email
+              .pull-right
+                = link_to 'Remove', delete_user_organization_team_path(@organization, @team, team: { user_id: user.id }), class: 'btn btn-xs btn-danger', method: :post
+.row
+  = form_tag add_project_organization_team_path(@organization, @team), class: 'form-inline'
+    .form-group
+      = select_tag 'team[project_id]', options_from_collection_for_select(@new_projects, 'id', 'name'), class: 'form-control'
+      = submit_tag 'Add Project', class: 'btn btn-primary'
+  .col-xs-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          = "Projects (#{@team.projects.size})"
+      .panel-body
+        ul.list-unstyled
+          - @team.projects.each do |project|
+            li
+              = project.name
+              .pull-right
+                = link_to 'Remove', delete_project_organization_team_path(@organization, @team, team: { project_id: project.id }), class: 'btn btn-xs btn-danger', method: :post
+- if @team != @organization.admin_team
+  = link_to 'Delete Team', organization_team_path(@organization, @team), class: 'btn btn-danger', method: :delete
+

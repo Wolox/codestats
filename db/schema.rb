@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214001536) do
+ActiveRecord::Schema.define(version: 20160214145023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,32 @@ ActiveRecord::Schema.define(version: 20160214001536) do
 
   add_index "projects", ["organization_id"], name: "index_projects_on_organization_id", using: :btree
 
+  create_table "projects_teams", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "project_id"
+  end
+
+  add_index "projects_teams", ["project_id"], name: "index_projects_teams_on_project_id", using: :btree
+  add_index "projects_teams", ["team_id"], name: "index_projects_teams_on_team_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.boolean  "admin",           default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "teams", ["organization_id"], name: "index_teams_on_organization_id", using: :btree
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
+
+  add_index "teams_users", ["team_id"], name: "index_teams_users_on_team_id", using: :btree
+  add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -82,4 +108,5 @@ ActiveRecord::Schema.define(version: 20160214001536) do
   add_foreign_key "branches", "projects"
   add_foreign_key "metrics", "branches"
   add_foreign_key "projects", "organizations"
+  add_foreign_key "teams", "organizations"
 end

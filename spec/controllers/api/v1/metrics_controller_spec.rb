@@ -36,6 +36,15 @@ describe Api::V1::MetricsController do
     context 'When creating a metric valid parameters' do
       let!(:user)    { create(:user) }
       let!(:project) { create(:project) }
+      let!(:team) do
+        create(
+          :team,
+          organization: project.organization,
+          admin: true,
+          projects: [project],
+          users: [user]
+        )
+      end
       let(:metric_params) do
         { branch_name: Faker::Name.name, name: Faker::Name.name, value: Faker::Number.number(8) }
       end
