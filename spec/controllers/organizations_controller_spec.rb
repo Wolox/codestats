@@ -5,7 +5,7 @@ RSpec.describe OrganizationsController do
   describe 'GET edit' do
     context 'When editing an organization' do
       let!(:organization) { create(:organization) }
-
+      let!(:team)         { create(:admin_team, organization: organization, users: [user]) }
       before(:each) do
         get :edit, id: organization.id
       end
@@ -23,6 +23,7 @@ RSpec.describe OrganizationsController do
   describe 'PATCH update' do
     context 'When updating an organization correctly' do
       let!(:organization) { create(:organization) }
+      let!(:team)         { create(:admin_team, organization: organization, users: [user]) }
       let(:new_name)      { "#{organization}-new" }
 
       before(:each) do
@@ -41,6 +42,7 @@ RSpec.describe OrganizationsController do
 
     context 'When updating an organization with error' do
       let!(:organization) { create(:organization) }
+      let!(:team)         { create(:admin_team, organization: organization, users: [user]) }
       let(:new_name)      { nil }
 
       before(:each) do
