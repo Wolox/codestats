@@ -4,9 +4,11 @@ class ProjectsController < ApplicationController
 
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
+    @projects = policy_scope(Project)
   end
 
   def new
+    authorize organization, :edit?
     unless organization.github_name.present?
       return redirect_to edit_organization_path(organization),
                          flash: { error: t('organizations.missing_github_link') }
@@ -16,21 +18,28 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    repo = github_service.get_repo(params[:name])
-    project = projects.create(name: repo.name, github_repo: repo.full_name)
-    project.generate_metrics_token
-    update_branches(project)
+    authorize organization, :edit?
+    create_project(github_service.get_repo(params[:name]))
     redirect_to organization_project_path(organization, project),
                 flash: { notice: t('projects.create.success') }
   end
 
   def show
-    @project = Project.find(params[:id])
-    @default_branch = @project.default_branch
+    authorize project
+    @default_branch = project.default_branch
     @metrics = @default_branch.metrics if @default_branch.present?
   end
 
   private
+
+  # TODO: Move this to another class
+  def create_project(repo)
+    @project = projects.create(
+      name: repo.name, github_repo: repo.full_name, teams: [organization.admin_team]
+    )
+    project.generate_metrics_token
+    update_branches(project)
+  end
 
   def update_branches(project)
     return unless project.github_repo.present?
@@ -48,6 +57,10 @@ class ProjectsController < ApplicationController
 
   def organization
     @organization ||= Organization.find(params[:organization_id])
+  end
+
+  def project
+    @project ||= Project.find(params[:id])
   end
 
   def projects
