@@ -152,6 +152,9 @@ group :test do
   # CodeClimate Reporter
   gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', require: false
+
+  gem 'rubycritic', github: 'mdesanti/rubycritic', branch: 'brakeman'
+  gem 's3_uploader'
 end
 
 group :production do
