@@ -51,5 +51,8 @@ module Codestats
 
     # For Heroku deployments
     config.assets.initialize_on_precompile = true
+
+    # Show 403 error page
+    config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
   end
 end

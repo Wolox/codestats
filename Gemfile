@@ -67,6 +67,7 @@ gem 'sinatra', '>= 1.3.0', require: nil
 gem 'sidekiq-failures'
 gem 'sidekiq_mailer'
 
+# Authorization Policies
 gem 'pundit'
 
 # Exceptions Report
