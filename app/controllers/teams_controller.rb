@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :organization
 
   def new
-    @team = Team.new(organization: organization)
+    @team = organization.teams.build
     authorize team
   end
 
