@@ -93,6 +93,10 @@ gem 'faraday-http-cache'
 # API
 gem 'versionist'
 
+gem 's3_uploader'
+
+gem 'httparty'
+
 group :development do
 
   # Gem to detect N+1 queries
@@ -147,14 +151,11 @@ group :test do
   gem 'timecop'
   gem 'webmock'
 
-  gem 'httparty'
-
   # CodeClimate Reporter
   gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', require: false
 
   gem 'rubycritic', github: 'mdesanti/rubycritic', branch: 'brakeman'
-  gem 's3_uploader'
 end
 
 group :production do
