@@ -147,6 +147,8 @@ group :test do
   gem 'timecop'
   gem 'webmock'
 
+  gem 'httparty'
+
   # CodeClimate Reporter
   gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', require: false

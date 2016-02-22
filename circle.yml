@@ -2,3 +2,8 @@ test:
   override:
     - bundle exec rspec
     - bundle exec rubocop app spec -R --format simple
+    - bundle exec rake codestats:code_coverage
+machine:
+  environment:
+    CODESTATS_URL: 'http://code-stats.herokuapp.com/api/v1/metrics'
+    CODESTATS_TOKEN: ee5767c83dda04551bc0e0a336a5d04c

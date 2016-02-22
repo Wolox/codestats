@@ -151,6 +151,9 @@ GEM
       activesupport (>= 3.2, < 5)
     hashdiff (0.2.3)
     hashie (3.4.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -431,6 +434,7 @@ DEPENDENCIES
   formtastic
   formulaic
   google-webfonts-rails
+  httparty
   inherited_resources
   jquery-rails
   jquery-turbolinks
