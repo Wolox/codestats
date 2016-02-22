@@ -1,5 +1,6 @@
 class GithubService
   attr_reader :user, :client
+  Octokit.auto_paginate = true
 
   delegate :branches, to: :client
 
