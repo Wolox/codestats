@@ -10,8 +10,8 @@ gem 'google-webfonts-rails'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
-# Use unicorn as the app server
-gem 'unicorn'
+# Use Puma as the app server
+gem 'puma'
 
 # Use fontawesome for common icons
 gem 'font-awesome-rails'
