@@ -3,11 +3,11 @@ class BranchesController < ApplicationController
   before_action :organization, :project
 
   def index
-    branches
+    @branches = policy_scope(branches)
   end
 
   def show
-    branch
+    authorize branch
     @metrics = branch.metrics
   end
 
