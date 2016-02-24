@@ -42,11 +42,9 @@ class TeamsController < ApplicationController
 
   def add_user
     authorize team, :update?
-    if includes_user?
-      return redirect_to_edit_team(:error, t('teams.users.add.exists'))
-    end
-    team.users << User.find(team_params[:user_id])
-    redirect_to_edit_team(:success, t('teams.users.add.success'))
+    user = User.find_by_id(team_params[:user_id]) || User.find_by_email(team_params[:email])
+    return add_existent_user(user) if user.present?
+    add_new_invitable_user
   end
 
   def add_project
@@ -60,7 +58,7 @@ class TeamsController < ApplicationController
 
   def delete_user
     authorize team, :update?
-    unless includes_user?
+    unless includes_user?(team_params[:user_id])
       return redirect_to_edit_team(:error, t('teams.users.delete.not_exists'))
     end
     team.users.delete(User.find(team_params[:user_id].to_i))
@@ -77,6 +75,22 @@ class TeamsController < ApplicationController
   end
 
   private
+
+  def add_new_invitable_user
+    if team_params[:invite].present? && team_params[:email].present?
+      user = User.invite!(email: team_params[:email])
+      team.users << user
+      redirect_to_edit_team(:success, t('teams.users.invited.success'))
+    end
+  end
+
+  def add_existent_user(user)
+    if includes_user?(user.id)
+      return redirect_to_edit_team(:error, t('teams.users.add.exists'))
+    end
+    team.users << user
+    redirect_to_edit_team(:success, t('teams.users.add.success'))
+  end
 
   def organization_admin_team?
     team == organization.admin_team
@@ -98,8 +112,9 @@ class TeamsController < ApplicationController
                 flash: { type_message => message }
   end
 
-  def includes_user?
-    team.user_ids.include?(team_params[:user_id].to_i)
+  def includes_user?(user_id)
+    return false unless user_id.present?
+    team.user_ids.include?(user_id.to_i)
   end
 
   def includes_project?
@@ -115,6 +130,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :project_id, :user_id)
+    params.require(:team).permit(:name, :project_id, :user_id, :invite, :email)
   end
 end

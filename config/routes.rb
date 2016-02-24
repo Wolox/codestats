@@ -1,6 +1,9 @@
 Codestats::Application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root to: 'landing#index'
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'omniauth_callbacks',
+    invitations: 'invitations'
+  }
 
   resources :organizations do
     member do

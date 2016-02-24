@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
-    @projects = policy_scope(Project)
+    @projects = policy_scope(organization.projects)
   end
 
   def new

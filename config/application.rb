@@ -54,5 +54,27 @@ module Codestats
 
     # Show 403 error page
     config.action_dispatch.rescue_responses['Pundit::NotAuthorizedError'] = :forbidden
+
+    config.active_record.raise_in_transactional_callbacks = true
+
+    # Mailer
+    config.action_mailer.default_url_options = {
+      host: Rails.application.secrets.mailer_host,
+      only_path: false
+    }
+    config.action_mailer.asset_host = Rails.application.secrets.mailer_host
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.default charset: 'utf-8'
+    config.action_mailer.smtp_settings = {
+      enable_starttls_auto: true,
+      address: Rails.application.secrets.mailer_address,
+      port: Rails.application.secrets.mailer_port,
+      domain: Rails.application.secrets.mailer_domain,
+      user_name: Rails.application.secrets.mailer_user_name,
+      password: Rails.application.secrets.mailer_password,
+      authentication: Rails.application.secrets.mailer_authentication
+    }
   end
 end
