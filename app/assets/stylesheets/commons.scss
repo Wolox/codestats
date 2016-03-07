@@ -33,3 +33,277 @@
 .badge.green {
   background-color: green;
 }
+
+// general
+
+@import url(https://fonts.googleapis.com/css?family=Kanit:100);
+
+* {
+  font-family: 'Kanit', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+.h1-title {
+  text-align: center;
+  color: $dark-white;
+  font-weight: 100;
+  font-size: 60px;
+  line-height: 200px;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 120px;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    background: $white;
+  }
+}
+
+.h2-subtitle {
+  display: inline-block;
+  vertical-align: bottom;
+  font-size: 20px;
+  color: $light-blue;
+  font-weight: 100;
+}
+
+.p-description {
+  font-size: 20px;
+  line-height: 36px;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.discrete-link {
+  margin: 0 10px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+//nav
+
+.nav-back {
+  height: 80px;
+  position: fixed;
+  z-index: 5;
+  background: $light-blue;
+  width: 100%;
+}
+
+.navbar-logo {
+  height: 70px;
+}
+
+.sign-in-btn {
+  margin: 15px 0;
+}
+
+//main
+
+.main-section {
+  background: asset-url('codestats_bg.jpg');
+  background-size: cover;
+  height: calc(100vh - 80px);
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: asset-url('codestats_overlay.png');
+  }
+
+  .main-content {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.h1-main {
+  color: $white;
+  font-size: 100px;
+  font-weight: 100;
+  background: rgba($dark-white, 0.3);
+  display: table;
+  padding: 5px 10px;
+  margin-bottom: 50px;
+}
+
+//features
+
+.features-section {
+  background: $light-violet ;
+  z-index: 3;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -70px 130px 30px rgba($black, 0.6);
+
+  &::after {
+    bottom: 0;
+    background-position: left bottom;
+    background: linear-gradient(140deg, transparent 20px, $dark-white 0),
+                linear-gradient(-140deg, transparent 20px, $dark-white 0);
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-repeat: repeat-x;
+    background-size: 20px 20px;
+    z-index: 3;
+  }
+}
+
+.features-info {
+  background: asset-url("features_bg.png");
+  box-shadow: 0 -5px 10px 5px $black;
+  z-index: 3;
+}
+
+.features {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.feature {
+  flex: 1;
+  transition: flex 0.5s ease;
+  box-shadow: 2px 0 10px 0 $black, inset 0 -40px 30px -35px rgba($black, 0.8);
+  height: 500px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    flex: 2;
+    transition: flex 0.5s ease 1s;
+
+    .feature-icon {
+      width: 100px;
+      height: 100px;
+      top: 140px;
+      transition: width 0.5s ease, height 0.5s ease, top 0.5s ease 0.5s;
+
+    }
+
+    .p-feature-description {
+      opacity: 1;
+      transition: opacity 1.5s ease 1.5s;
+    }
+  }
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $translucent-black;
+  }
+
+  .feature-icon {
+    z-index: 3;
+    position: relative;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .p-feature-description {
+    opacity: 0;
+    position: absolute;
+    top: 230px;
+    color: $white;
+    font-weight: 100;
+    font-size: 26px;
+    max-width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+  }
+}
+
+.feature:first-child {
+  background: asset-url('feature_1.png');
+  background-size: cover;
+  z-index: 2;
+}
+
+.feature:nth-child(2) {
+  background: asset-url('feature_2.png');
+  background-size: cover;
+  z-index: 1;
+}
+.feature:nth-child(3) {
+  background: asset-url('feature_3.png');
+  background-size: cover;
+}
+
+//about
+
+.about-section {
+  background: $dark-white;
+  position: relative;
+  padding: 60px 40px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 3;
+  background-image: asset-url('footer_trama.png');
+
+  .headline-container {
+    padding: 20px;
+
+    .wolox-logo {
+      height: 75px;
+    }
+  }
+
+  .p-description {
+    padding: 20px;
+    max-width: 750px;
+    color: $dark-violet;
+
+    .discrete-link {
+      color: lighten($light-violet, 10%);
+      cursor: pointer;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .h1-main {
+    margin: 0 auto 50px;
+    display: block;
+    text-align: center;
+    font-size: 10vw;
+  }
+}

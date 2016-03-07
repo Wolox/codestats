@@ -1,4 +1,6 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @organizations = policy_scope(Organization)
   end

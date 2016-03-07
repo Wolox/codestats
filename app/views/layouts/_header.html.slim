@@ -1,36 +1,40 @@
-nav.navbar.navbar-default
-  .container-fluid
-    /! Brand and toggle get grouped for better mobile display
-    .navbar-header
-      button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      = link_to 'CS', root_path, class: 'navbar-brand'
-    /! Collect the nav links, forms, and other content for toggling
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        - if @organization.present? && @organization.persisted?
-          li
-             = link_to @organization.name, organization_projects_path(@organization)
-          - if @project.present? && @project.persisted?
-            li
-              = link_to @project.name.camelize, organization_project_path(@organization, @project)
-            li
-              = link_to t('activerecord.models.branch.other'), organization_project_branches_path(@organization, @project)
+.nav-back
+  nav.navbar.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed aria-expanded="false" data-target=".navbar-collapse" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to root_path, class: 'navbar-brand'
+          = image_tag "codestats_logo.png", class: 'navbar-logo'
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          - if user_signed_in?
+            - if @organization.present? && @organization.persisted?
+              li
+                 = link_to @organization.name, organization_projects_path(@organization)
+              - if @project.present? && @project.persisted?
+                li
+                  = link_to @project.name.camelize, organization_project_path(@organization, @project)
+                li
+                  = link_to t('activerecord.models.branch.other'), organization_project_branches_path(@organization, @project)
 
-      ul.nav.navbar-nav.navbar-right
-        - if @organization.present? && @organization.persisted?
-          li
-            = link_to t('projects.new'), new_organization_project_path(@organization)
-          li
-            = link_to t('organizations.edit'), edit_organization_path(@organization)
-        li
-          = link_to t('organizations.new'), new_organization_path
-        li
-          = link_to t('organizations.my_index'), organizations_path
-        li
-          = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
-    /! /.navbar-collapse
-  /! /.container-fluid
+        ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            - if @organization.present? && @organization.persisted?
+              li
+                = link_to t('projects.new'), new_organization_project_path(@organization)
+              li
+                = link_to t('organizations.edit'), edit_organization_path(@organization)
+            li
+              = link_to t('organizations.new'), new_organization_path
+            li
+              = link_to t('organizations.my_index'), organizations_path
+            li
+              = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+          - else
+            //TODO: put github login here
+            a href="#"
+              = image_tag "github_sign_in.png", class: 'sign-in-btn'

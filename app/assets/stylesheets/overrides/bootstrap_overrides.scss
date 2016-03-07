@@ -1,0 +1,24 @@
+.navbar {
+  height: 70px;
+  background: $white;
+  box-shadow: 0 0 10px -2px $black;
+  border-radius: 0;
+
+  .container {
+    height: 100%;
+  }
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-toggle {
+  margin-bottom: 18px;
+  margin-top: 18px;
+  background: $light-violet;
+
+  .icon-bar {
+    background: $white;
+  }
+}
