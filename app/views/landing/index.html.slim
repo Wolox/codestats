@@ -1,0 +1,43 @@
+.main-section.section
+  .container.main-content
+    h1.h1-main
+      = t('landing.title_1')
+    h1.h1-main
+      = t('landing.title_2')
+    h1.h1-main
+      = t('landing.title_3')
+.features-section
+  .features-info
+    h1.h1-title
+      = t('landing.features.title')
+  .features
+    .feature
+      = image_tag 'feature_icon_1.png', class: 'feature-icon'
+      p.p-feature-description
+        = t('landing.features.feature_1_description')
+    .feature
+      = image_tag 'feature_icon_2.png', class: 'feature-icon'
+      p.p-feature-description
+        = t('landing.features.feature_2_description')
+    .feature
+      = image_tag 'feature_icon_3.png', class: 'feature-icon'
+      p.p-feature-description
+        = t('landing.features.feature_3_description')
+.about-section
+  .about-info
+    .headline-container
+      h2.h2-subtitle
+        = t('landing.developed_by.title')
+      = image_tag "wolox_logo.png", class: 'wolox-logo'
+    p.p-description
+      = t('landing.developed_by.description_1')
+      a.discrete-link src='https://github.com/epintos'
+        | Esteban Pintos
+      | ,
+      a.discrete-link src='http://github.com/mdesanti'
+        | Matias De Santi
+      = t('landing.developed_by.description_2')
+      a.discrete-link src='http://github.com/SKOLZ'
+        | Gabriel Zanzotti
+      = t('landing.developed_by.description_3')
+  iframe#mark.reasons-video(width="500" height="300" src="https://www.youtube.com/embed/Dfv9vwoCVZM" frameborder="0" allowfullscreen)
