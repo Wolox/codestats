@@ -1,40 +1,43 @@
 .main-section.section
   .container.main-content
     h1.h1-main
-      | Keep your code
+      = t('landing.title_1')
     h1.h1-main
-      | Bright &
+      = t('landing.title_2')
     h1.h1-main
-      | Clean
+      = t('landing.title_3')
 .features-section
   .features-info
     h1.h1-title
-      | Features
+      = t('landing.features.title')
   .features
     .feature
       = image_tag 'feature_icon_1.png', class: 'feature-icon'
       p.p-feature-description
-        | Collect any metric you want from any branch you want
+        = t('landing.features.feature_1_description')
     .feature
       = image_tag 'feature_icon_2.png', class: 'feature-icon'
       p.p-feature-description
-        | Select the metrics that are most important to you and they will be shown in the main page
+        = t('landing.features.feature_2_description')
     .feature
       = image_tag 'feature_icon_3.png', class: 'feature-icon'
       p.p-feature-description
-        | Integrate CodeStats with your pull requests and avoid undesired surprises during mantainance
+        = t('landing.features.feature_3_description')
 .about-section
   .about-info
     .headline-container
       h2.h2-subtitle
-        | Developed by
+        = t('landing.developed_by.title')
       = image_tag "wolox_logo.png", class: 'wolox-logo'
     p.p-description
-      | This project was developed and is mantained by
+      = t('landing.developed_by.description_1')
       a.discrete-link src='https://github.com/epintos'
         | Esteban Pintos
-      | and
+      | ,
       a.discrete-link src='http://github.com/mdesanti'
         | Matias De Santi
-      | with the objective of providing a free and fully equiped dashboard to control the code quality of all your projects in one place.
+      = t('landing.developed_by.description_2')
+      a.discrete-link src='http://github.com/SKOLZ'
+        | Gabriel Zanzotti
+      = t('landing.developed_by.description_3')
   iframe#mark.reasons-video(width="500" height="300" src="https://www.youtube.com/embed/Dfv9vwoCVZM" frameborder="0" allowfullscreen)

@@ -1,6 +1,5 @@
 class TeamsController < ApplicationController
   # Preload organization
-  before_action :authenticate_user!
   before_action :organization
 
   def new

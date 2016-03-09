@@ -1,6 +1,5 @@
 class BranchesController < ApplicationController
   # Always preload organization and project
-  before_action :authenticate_user!
   before_action :organization, :project
 
   def index

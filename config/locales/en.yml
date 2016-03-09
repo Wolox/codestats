@@ -70,3 +70,19 @@ en:
       delete:
         success: 'User deleted!'
         not_exists: User doesn't exist in the team!
+  landing:
+    title_1: 'Keep your code'
+    title_2: 'Bright &'
+    title_3: 'Clean'
+    features:
+      title: 'Features'
+      feature_1_description: 'Collect any metric you want from any branch you want'
+      feature_2_description: 'Select the metrics that are most important to you and they will be shown in the main page'
+      feature_3_description: 'Integrate CodeStats with your pull requests and avoid undesired surprises during mantainance'
+    developed_by:
+      title: 'Developed by'
+      description_1: 'This project was developed and is mantained by'
+      description_2: 'and'
+      description_3: 'with the objective of providing a free and fully equiped dashboard to control the code quality of all your projects in one place.'
+
+
