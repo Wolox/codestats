@@ -22,3 +22,14 @@
     background: $white;
   }
 }
+
+.navbar-nav > li > a {
+  padding-bottom: 25px;
+  padding-top: 25px;
+  text-transform: uppercase;
+  color: $violet;
+
+  &:hover {
+    background: lighten($light-violet, 50%);
+  }
+}

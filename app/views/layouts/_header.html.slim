@@ -27,11 +27,7 @@
               li
                 = link_to t('projects.new'), new_organization_project_path(@organization)
               li
-                = link_to t('organizations.edit'), edit_organization_path(@organization)
-            li
-              = link_to t('organizations.new'), new_organization_path
-            li
-              = link_to t('organizations.my_index'), organizations_path
+                = link_to t('organizations.my_index'), organizations_path
             li
               = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
           - else

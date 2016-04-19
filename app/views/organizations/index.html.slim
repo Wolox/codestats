@@ -1,9 +1,23 @@
-.common-list.col-xs-12
+.container.main-container
+  - if @organizations.empty?
+    h1.h1-empty-list
+      = t('organizations.empty_title')
   - @organizations.each do |org|
-    .resource
-      - if org.github_avatar_url.present?
-        .avatar
-          = image_tag org.github_avatar_url
-      .name
-        = link_to org.name, organization_projects_path(org)
+    .row-item.organization
+      = link_to organization_projects_path(org) do
+        - if org.github_avatar_url.present?
+          = image_tag org.github_avatar_url, class: 'org-image'
+        .org-content
+          .org-upper-info
+            h1.org-name
+              = org.name
+          span.org-info
+            = fa_icon 'lightbulb-o'
+            | 231 Projects
+      .org-actions
+        = link_to fa_icon('cogs'), edit_organization_path(org), class: 'org-button circular-button small-button'
+        = link_to fa_icon('trash-o'), edit_organization_path(org), class: 'org-button circular-button small-button'
+  = link_to fa_icon('plus'), new_organization_path, class: 'circular-button big-button add-org-button'
+
+
 

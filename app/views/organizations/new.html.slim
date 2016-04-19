@@ -1,3 +1,9 @@
-h2
-  = t('helpers.titles.new', model: Organization)
-= render 'form', organization: @organization
+= link_to organizations_path, class: 'back-container' do
+  = fa_icon 'arrow-left'
+  span.base-span
+    = t('back.organizations')
+.container.main-container.centered-content
+  .content
+    h1.h1-title--dark.h1-title.h1-title--small.h1-push-bottom
+      = t('helpers.titles.create', model: Organization)
+    = render 'form', organization: @organization

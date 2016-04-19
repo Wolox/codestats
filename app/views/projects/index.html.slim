@@ -1,4 +1,5 @@
-.common-list.col-xs-12
-  - @projects.each do |repo|
-    .resource
+.container.main-container
+  .common-list.col-xs-12
+    - @projects.each do |repo|
+      .resource
       = link_to repo.github_repo, organization_project_path(@organization, repo), class: 'name'
