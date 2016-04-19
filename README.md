@@ -230,6 +230,6 @@ And you can access the PGHero information by entering `/pghero`.
 
 ## About
 
-This project is maintained by [Esteban Guido Pintos](https://github.com/epintos) and it was written by [Wolox](http://www.wolox.com.ar).
+This project is maintained by [Esteban Guido Pintos](https://github.com/epintos), [Gabriel Zanzotti](https://github.com/SKOLZ), [Matias De Santi](http://github.com/mdesanti) and it was written by [Wolox](http://www.wolox.com.ar).
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
