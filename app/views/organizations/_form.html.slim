@@ -4,10 +4,6 @@
       - organization.errors.full_messages.each do |msg|
         li
           = msg
-.row
-  = form_for organization, html: { class: 'form-horizontal col-xs-8 col-xs-offset-2', role: 'form' } do |f|
-    .form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control col-xs-2', required: true
-    .form-group
-      = f.submit nil, class: 'btn btn-primary'
+= form_for organization, html: { class: 'form-base form-base--vertical', role: 'form' } do |f|
+  = f.text_field :name, class: 'form-input-base', required: true, placeholder: t('organizations.name')
+  = f.submit nil, class: 'button-base'

@@ -22,6 +22,8 @@
 en:
   default: default
   organizations:
+    name: 'Name'
+    empty_title: 'There are no organizations to show.'
     add: Link Organization
     edit: Edit Organization
     create:
@@ -84,5 +86,9 @@ en:
       description_1: 'This project was developed and is mantained by'
       description_2: 'and'
       description_3: 'with the objective of providing a free and fully equiped dashboard to control the code quality of all your projects in one place.'
+  back:
+    organizations: 'Back to your organizations'
+
+
 
 
