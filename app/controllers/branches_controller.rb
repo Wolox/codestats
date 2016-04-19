@@ -1,4 +1,5 @@
 class BranchesController < ApplicationController
+  before_action :authenticate_user!
   # Always preload organization and project
   before_action :organization, :project
 

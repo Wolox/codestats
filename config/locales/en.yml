@@ -48,6 +48,7 @@ en:
     new: Add Project
     new_banner: Choose the project you want to add to %{organization}
     new_banner: Choose a project to get started
+    title: '%{quantity} projects'
   teams:
     create:
       success: Team created!

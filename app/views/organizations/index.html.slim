@@ -13,7 +13,7 @@
               = org.name
           span.org-info
             = fa_icon 'lightbulb-o'
-            | 231 Projects
+            = t('projects.title', quantity: org.projects.count)
       .org-actions
         = link_to fa_icon('cogs'), edit_organization_path(org), class: 'org-button circular-button small-button'
         = link_to fa_icon('trash-o'), edit_organization_path(org), class: 'org-button circular-button small-button'

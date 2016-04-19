@@ -7,7 +7,7 @@
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        = link_to root_path, class: 'navbar-brand'
+        = link_to organizations_path, class: 'navbar-brand'
           = image_tag "codestats_logo.png", class: 'navbar-logo'
       .collapse.navbar-collapse
         ul.nav.navbar-nav
@@ -31,6 +31,4 @@
             li
               = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
           - else
-            //TODO: put github login here
-            a href="#"
-              = image_tag "github_sign_in.png", class: 'sign-in-btn'
+            = link_to image_tag('github_sign_in.png', class: 'sign-in-btn'), omniauth_authorize_path(User, :github, invitation_token: params[:invitation_token])

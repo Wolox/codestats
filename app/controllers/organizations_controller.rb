@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @organizations = policy_scope(Organization)
   end
@@ -11,7 +12,7 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
     authorize organization
-    organization.teams.build(name: 'Admins', admin: true, users: [current_user])
+    organization.build_team(current_user)
     if organization.save
       redirect_to_edit_organization(:success, t('organizations.create.success'))
     else
