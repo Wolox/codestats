@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   # Always preload organization
   before_action :organization
 
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
-    @projects = policy_scope(Project)
+    @projects = policy_scope(organization.projects)
   end
 
   def new

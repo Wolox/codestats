@@ -48,6 +48,7 @@ en:
     new: Add Project
     new_banner: Choose the project you want to add to %{organization}
     new_banner: Choose a project to get started
+    title: '%{quantity} projects'
   teams:
     create:
       success: Team created!
@@ -72,6 +73,8 @@ en:
       delete:
         success: 'User deleted!'
         not_exists: User doesn't exist in the team!
+      invited:
+        success: 'User invited!'
   landing:
     title_1: 'Keep your code'
     title_2: 'Bright &'
@@ -88,7 +91,3 @@ en:
       description_3: 'with the objective of providing a free and fully equiped dashboard to control the code quality of all your projects in one place.'
   back:
     organizations: 'Back to your organizations'
-
-
-
-

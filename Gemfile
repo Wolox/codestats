@@ -43,7 +43,10 @@ gem 'turbolinks'
 
 gem 'jquery-turbolinks'
 
+# User Authentication
 gem 'devise'
+gem 'devise-async'
+gem 'devise_invitable'
 
 gem 'responders', '2.0'
 
@@ -106,6 +109,7 @@ group :development do
   gem 'web-console'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'binding_of_caller'
 
   # Capistrano
   # Remove comments if using Capistrano
