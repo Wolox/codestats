@@ -1,19 +1,15 @@
 class OmniauthUser
   def self.from_omniauth(auth)
-    user = find_or_create_omniauth(auth)
-    user.update!(auth_token: auth.credentials.token)
+    github_info = GithubAuthInfo.new(auth)
+    user = find_or_create_omniauth(github_info)
+    user.update!(email: github_info.email, auth_token: github_info.auth_token)
     user
   end
 
   def self.omniauth_invitable(auth, user)
-    user.update!(
-      provider: auth.provider,
-      uid: auth.uid,
-      github_nickname: auth.info.nickname,
-      github_avatar_url: auth.extra.raw_info.avatar_url,
-      password: default_password,
-      auth_token: auth.credentials.token
-    )
+    github_info = GithubAuthInfo.new(auth)
+    user.assign_attributes(github_info.omniauth_info)
+    user.update!(password: default_password, auth_token: github_info.auth_token)
     user.accept_invitation!
     user
   end
@@ -22,25 +18,16 @@ class OmniauthUser
     User.find_by_invitation_token(token, true)
   end
 
-  def self.find_or_create_omniauth(auth)
-    User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      assign_omniauth_attributes(auth, user)
+  def self.find_or_create_omniauth(github_info)
+    User.where(provider: github_info.provider, uid: github_info.uid).first_or_create do |user|
+      github_info.omniauth_info.each { |key, value| user.send("#{key}=", value) }
+      user.password = default_password
     end
-  end
-
-  def self.assign_omniauth_attributes(auth, user)
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.email = auth.info.email
-    user.github_nickname = auth.info.nickname
-    user.github_avatar_url = auth.extra.raw_info.avatar_url
-    user.password = default_password
   end
 
   def self.default_password
     Devise.friendly_token[0, 20]
   end
 
-  private_class_method :find_or_create_omniauth, :assign_omniauth_attributes,
-                       :default_password
+  private_class_method :find_or_create_omniauth, :default_password
 end
