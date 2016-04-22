@@ -3,4 +3,8 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :users
   validates :name, :organization, presence: true
+
+  def includes_project?(project)
+    project_ids.include?(project.id)
+  end
 end

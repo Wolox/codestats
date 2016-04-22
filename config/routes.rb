@@ -6,22 +6,20 @@ Codestats::Application.routes.draw do
   }
 
   resources :organizations do
-    member do
-      get :link_to_github
-      post :unlink_github
-    end
     resources :projects, only: [:new, :create, :show, :index] do
       resources :branches, only: [:index, :show]
     end
     resources :teams do
-      member do
-        post :delete_user
-        post :delete_project
-        post :add_user
-        post :add_project
+      resources :users, only: [:create, :destroy], controller: :teams_users
+      resources :projects, only: [:create, :destroy], controller: :teams_projects
+    end
+    resources :github_link, only: [:new], controller: :organizations_github_link do
+      collection do
+        delete :unlink
       end
     end
   end
+
 
   # API Endpoints
   api_version(module:  'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do

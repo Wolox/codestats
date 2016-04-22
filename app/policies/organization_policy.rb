@@ -13,4 +13,8 @@ class OrganizationPolicy < ApplicationPolicy
     return false unless record.admin_team.present?
     record.admin_team.users.include?(user)
   end
+
+  def destroy?
+    update?
+  end
 end
