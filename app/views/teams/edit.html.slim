@@ -2,18 +2,18 @@ h2
   = t('teams.edit', name: @team.name)
 = render 'form', organization: @organization, team: @team
 .col-xs-6
-  = form_tag add_user_organization_team_path(@organization, @team)
+  = form_tag organization_team_users_path(@organization, @team)
     .form-group
       label
         | Add user from organization
-      = select_tag 'team[user_id]', options_from_collection_for_select(@new_users, 'id', 'github_nickname'), class: 'form-control', require: true
+      = select_tag 'id', options_from_collection_for_select(@new_users, 'id', 'github_nickname'), class: 'form-control', require: true
     = submit_tag 'Add User', class: 'btn btn-primary'
-  = form_tag add_user_organization_team_path(@organization, @team)
+  = form_tag organization_team_users_path(@organization, @team)
     .form-group
       label
         | Invite new user
-      = text_field_tag 'team[email]', '', class: 'form-control', require: true
-      = hidden_field_tag 'team[invite]', true
+      = text_field_tag 'team_users[email]', '', class: 'form-control', require: true
+      = hidden_field_tag 'team_users[invite]', true
     = submit_tag 'Invite User', class: 'btn btn-primary'
   br
   .panel.panel-default
@@ -29,13 +29,13 @@ h2
               span.label.label-default
                 | Pending Invitation
             .pull-right
-              = link_to 'Remove', delete_user_organization_team_path(@organization, @team, team: { user_id: user.id }), class: 'btn btn-xs btn-danger', method: :post
+              = link_to 'Remove', organization_team_user_path(@organization, @team, user), class: 'btn btn-xs btn-danger', method: :delete
 .col-xs-6
-  = form_tag add_project_organization_team_path(@organization, @team)
+  = form_tag organization_team_projects_path(@organization, @team, @project)
     .form-group
       label
         | Add project from organization
-      = select_tag 'team[project_id]', options_from_collection_for_select(@new_projects, 'id', 'name'), class: 'form-control'
+      = select_tag 'id', options_from_collection_for_select(@new_projects, 'id', 'name'), class: 'form-control'
     = submit_tag 'Add Project', class: 'btn btn-primary'
   br
   .panel.panel-default
@@ -48,7 +48,7 @@ h2
           li.clearfix
             = project.name
             .pull-right
-              = link_to 'Remove', delete_project_organization_team_path(@organization, @team, team: { project_id: project.id }), class: 'btn btn-xs btn-danger', method: :post
+              = link_to 'Remove', organization_team_project_path(@organization, @team, project), class: 'btn btn-xs btn-danger', method: :delete
   - if @team != @organization.admin_team
     = link_to 'Delete Team', organization_team_path(@organization, @team), class: 'btn btn-danger', method: :delete
 

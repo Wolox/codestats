@@ -22,13 +22,16 @@
 en:
   default: default
   organizations:
-    name: 'Name'
     empty_title: 'There are no organizations to show.'
     add: Link Organization
     edit: Edit Organization
     create:
       success: Organization created!
+    destroy:
+      confirm: Are you sure you want to delete the Organization %{name}?
+      success: Organization deleted!
     missing_github_link: This organization is not linked to Github
+    name: 'Name'
     new: Add Organization
     new_banner: Choose the Github organization you want to link to %{name}
     my_index: My Organizations

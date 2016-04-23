@@ -16,7 +16,7 @@
             = t('projects.title', quantity: org.projects.count)
       .org-actions
         = link_to fa_icon('cogs'), edit_organization_path(org), class: 'org-button circular-button small-button'
-        = link_to fa_icon('trash-o'), edit_organization_path(org), class: 'org-button circular-button small-button'
+        = link_to fa_icon('trash-o'), organization_path(org), class: 'org-button circular-button small-button', method: :delete, data: { confirm: t('organizations.destroy.confirm', name: org.name) }
   = link_to fa_icon('plus'), new_organization_path, class: 'circular-button big-button add-org-button'
 
 

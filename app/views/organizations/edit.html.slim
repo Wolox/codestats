@@ -7,10 +7,10 @@
       = t('organizations.services')
     - if @organization.github_url
       = "Github Organization: #{@organization.github_name}"
-      = link_to 'Unlink', unlink_github_organization_path(@organization), class: 'btn btn-danger pull-right', method: :post
-      = link_to 'Change', link_to_github_organization_path(@organization), class: 'btn btn-primary pull-right'
+      = link_to 'Unlink', unlink_organization_github_link_index_path(@organization), class: 'btn btn-danger pull-right', method: :delete
+      = link_to 'Change', new_organization_github_link_path(@organization), class: 'btn btn-primary pull-right'
     - else
-      = link_to 'Link To Github', link_to_github_organization_path(@organization), class: 'btn btn-primary'
+      = link_to 'Link To Github', new_organization_github_link_path(@organization), class: 'btn btn-primary'
   .row
     h4
       = t('organizations.teams')
