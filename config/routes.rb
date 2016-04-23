@@ -20,6 +20,8 @@ Codestats::Application.routes.draw do
     end
   end
 
+  resources :github_pull_requests, only: [:create]
+
 
   # API Endpoints
   api_version(module:  'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
