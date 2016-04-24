@@ -1,19 +1,9 @@
 class GithubPullRequest
-  attr_reader :pull_request
+  attr_reader :full_name, :sha, :branch
 
-  def initialize(pull_request)
-    @pull_request = pull_request
-  end
-
-  def full_name
-    pull_request['base']['repo']['full_name']
-  end
-
-  def sha
-    pull_request['head']['sha']
-  end
-
-  def branch
-    pull_request['head']['ref']
+  def initialize(pull_request_data)
+    @full_name = pull_request_data[:full_name]
+    @sha = pull_request_data[:sha]
+    @branch = pull_request_data[:branch]
   end
 end
