@@ -18,7 +18,7 @@ module Api
       end
 
       def metric_params
-        params.fetch(:metric, {}).permit(:branch_name, :name, :value, :url)
+        params.fetch(:metric, {}).permit(:branch_name, :name, :value, :url, :minimum)
       end
     end
   end

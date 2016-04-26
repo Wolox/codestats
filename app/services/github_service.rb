@@ -24,4 +24,8 @@ class GithubService
   def get_repo(name)
     client.repo(name)
   end
+
+  def create_status(pull_request, status, options = {})
+    client.create_status(pull_request.full_name, pull_request.sha, status, options)
+  end
 end
