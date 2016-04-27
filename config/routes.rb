@@ -13,7 +13,7 @@ Codestats::Application.routes.draw do
       resources :users, only: [:create, :destroy], controller: :teams_users
       resources :projects, only: [:create, :destroy], controller: :teams_projects
     end
-    resources :github_link, only: [:new], controller: :organizations_github_link do
+    resources :github_link, only: [:new, :create], controller: :organizations_github_link do
       collection do
         delete :unlink
       end

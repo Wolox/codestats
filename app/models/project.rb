@@ -3,12 +3,10 @@ class Project < ActiveRecord::Base
   has_many :branches, dependent: :destroy
   has_and_belongs_to_many :teams
 
+  delegate :admin_user, to: :organization
+
   def default_branch
     branches.find_by(default: true)
-  end
-
-  def admin_user
-    organization.admin_team.users.first
   end
 
   def generate_metrics_token
