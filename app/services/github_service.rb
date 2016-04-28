@@ -28,4 +28,13 @@ class GithubService
   def create_status(pull_request, status, options = {})
     client.create_status(pull_request.full_name, pull_request.sha, status, options)
   end
+
+  def create_webhook(repo_full_name, url, events, content_type = 'form')
+    client.create_hook(
+      repo_full_name,
+      'web',
+      { url: url, content_type: content_type },
+      events: events, active: true
+    )
+  end
 end

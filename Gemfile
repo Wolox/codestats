@@ -84,8 +84,6 @@ gem 'pghero'
 # SEO Meta Tags
 gem 'metamagic'
 
-gem 'newrelic_rpm'
-
 # Github OAuth
 gem 'omniauth-github'
 

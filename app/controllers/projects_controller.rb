@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 
   def create
     authorize organization, :edit?
-    create_project(github_service.get_repo(params[:name]))
+    project = ProjectManager.new(organization.projects.build).create(github_repo)
     redirect_to organization_project_path(organization, project),
                 flash: { notice: t('projects.create.success') }
   end
@@ -33,18 +33,8 @@ class ProjectsController < ApplicationController
 
   private
 
-  # TODO: Move this to another class
-  def create_project(repo)
-    @project = projects.create(
-      name: repo.name, github_repo: repo.full_name, teams: [organization.admin_team]
-    )
-    project.generate_metrics_token
-    update_branches(project)
-  end
-
-  def update_branches(project)
-    return unless project.github_repo.present?
-    ProjectBranchesRetriever.perform_async(current_user.id, project.id)
+  def github_repo
+    github_service.get_repo(params[:name])
   end
 
   def github_non_linked_repos

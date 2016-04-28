@@ -10,6 +10,15 @@ class OrganizationsGithubLinkController < ApplicationController
     @github_orgs.select! { |o| !existing_organizations.include?(o.login) }
   end
 
+  def create
+    authorize organization, :update?
+    if organization.update(github_link_params)
+      redirect_to_edit_organization(:success, t('organizations.update.success'))
+    else
+      render 'new'
+    end
+  end
+
   def unlink
     authorize organization, :update?
     if organization.update(github_url: nil, github_avatar_url: nil, github_name: nil)
@@ -31,5 +40,9 @@ class OrganizationsGithubLinkController < ApplicationController
 
   def organization
     @organization ||= Organization.find(params[:organization_id])
+  end
+
+  def github_link_params
+    params.require(:github_link).permit(:github_name, :github_avatar_url, :github_url)
   end
 end
