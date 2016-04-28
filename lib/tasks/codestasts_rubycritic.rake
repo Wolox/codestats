@@ -8,7 +8,7 @@ namespace :codestats do
     uploader.upload(dir, bucket)
     json = JSON.parse(File.read(Rails.root.join('tmp/rubycritic/report.json')))
     url = "https://s3.amazonaws.com/#{bucket}/#{project}/#{branch}/overview.html"
-    Rake::Task["codestats:post_metric"].invoke('rubycritic', json['score'], url)
+    Rake::Task["codestats:post_metric"].invoke('rubycritic', json['score'], url, nil)
   end
 end
 
