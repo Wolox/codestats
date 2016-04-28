@@ -10,18 +10,15 @@ class ProjectBranchesRetriever
   end
 
   def update_branches
-    branches.each { |branch| create_or_update(branch) }
+    branches.each { |branch| create_or_update(GithubBranch.new(branch)) }
   end
 
   private
 
   def create_or_update(github_branch)
-    branch = project.branches.find_or_create_by(name: github_branch[:name])
-    branch.update_attributes!(default: true) if default?(branch.name)
-  end
-
-  def default?(branch_name)
-    branch_name == repo_info[:default_branch]
+    BranchManager.new(
+      project.branches.find_or_initialize_by(name: github_branch.name)
+    ).create_or_update(github_branch, repo_info[:default_branch])
   end
 
   def github_service
