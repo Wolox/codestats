@@ -1,12 +1,13 @@
-.common-list.col-xs-12
-  - if metrics.present?
-    - metrics.each do |metric|
-      .resource
-        .name
-          = "#{metric.name} - #{metric.value}"
-        - if metric.url.present?
-          .button
-            = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
-  - else
-    = t('metrics.empty')
-
+.container.main-container
+  .row
+    .common-list.col-xs-12
+      - if metrics.present?
+        - metrics.each do |metric|
+          .resource
+            .name
+              = "#{metric.name} - #{metric.value}"
+            - if metric.url.present?
+              .button
+                = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
+      - else
+        = t('metrics.empty')
