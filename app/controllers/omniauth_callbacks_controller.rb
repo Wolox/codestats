@@ -22,6 +22,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def resource_from_invitation_token
-    OmniauthUser.find_by_invitation_token(params[:invitation_token], true)
+    OmniauthUser.find_by_invitation_token(params[:invitation_token])
   end
 end
