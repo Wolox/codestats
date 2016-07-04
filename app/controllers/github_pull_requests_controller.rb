@@ -10,14 +10,15 @@ class GithubPullRequestsController < ActionController::Base
   private
 
   def handle_status
-    if continuos_integration_success_status?
+    payload = JSON.parse(params[:payload])
+    if continuos_integration_success_status?(payload)
       AnalyzeGithubMetricsStatus.perform_async(
-        sha: params[:sha], full_name: params[:name], branch: params[:branches].last[:name]
+        sha: payload['sha'], full_name: payload['name'], branch: payload['branches'].last['name']
       )
     end
   end
 
-  def continuos_integration_success_status?
-    params[:context].downcase.include?('ci') && params[:state] == 'success'
+  def continuos_integration_success_status?(payload)
+    payload['context'].downcase.include?('ci') && payload['state'] == 'success'
   end
 end
