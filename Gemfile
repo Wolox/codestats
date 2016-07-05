@@ -98,6 +98,8 @@ gem 's3_uploader'
 
 gem 'httparty'
 
+gem 'codestats-metrics-reporter', require: nil, git: 'git@github.com:Wolox/codestats-metrics-reporter.git'
+
 group :development do
 
   # Gem to detect N+1 queries
