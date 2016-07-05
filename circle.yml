@@ -3,9 +3,4 @@ test:
     - bundle exec rspec
     - bundle exec rubocop app spec -R --format simple
     - bundle exec rubycritic -s 80
-    - bundle exec rake codestats:code_coverage
-    - bundle exec rake codestats:rubycritic
-machine:
-  environment:
-    CODESTATS_URL: 'http://code-stats.herokuapp.com/api/v1/metrics'
-    CODESTATS_TOKEN: ee5767c83dda04551bc0e0a336a5d04c
+    - bundle exec codestats-metrics-reporter
