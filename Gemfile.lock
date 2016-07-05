@@ -31,6 +31,12 @@ GIT
       reek (= 3.11)
       virtus (~> 1.0)
 
+GIT
+  remote: git@github.com:Wolox/codestats-metrics-reporter.git
+  revision: ce704399bf2f53b25366a21ddb3a798fa78d0e41
+  specs:
+    codestats-metrics-reporter (0.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -513,6 +519,7 @@ DEPENDENCIES
   capybara
   carrierwave
   codeclimate-test-reporter
+  codestats-metrics-reporter!
   coffee-rails
   database_cleaner
   devise

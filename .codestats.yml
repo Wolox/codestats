@@ -1,0 +1,11 @@
+config:
+  token: ENV['CODE_STATS_TOKEN']
+  ci: 'CIRCLECI'
+metrics:
+  rubocop:
+    enabled: true
+    s3_key: ENV['AWS_KEY']
+    s3_secret: ENV['AWS_SECRET_KEY']
+    region: ENV['AWS_REGION']
+  simplecov:
+    enabled: true
