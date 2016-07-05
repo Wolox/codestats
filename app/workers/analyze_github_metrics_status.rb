@@ -15,7 +15,7 @@ class AnalyzeGithubMetricsStatus
     fetch_project_branches(project)
     branch = project.branches.find_by(name: pull_request.branch)
     return unless branch.present?
-    change_pull_request_status(pull_request_status(project, branch))
+    change_pull_request_status(project, pull_request_status(branch))
   end
 
   def change_pull_request_status(project, status)
