@@ -6,18 +6,24 @@ class BranchMetricUpdater
     @project_id = project_id
     @metric_params = metric_params
     @user_id = user_id
-    # TODO: Take into account branches deleted and created with same name
     if branch.present?
-      metric = branch.metrics.find_or_create_by(name: metric_params['name'])
-      metric.update!(metric_params.except('branch_name')) if metric.present?
-      logger.info "Metric #{metric_params['name']} for "\
-      "branch #{metric_params['branch_name']} was created"
+      update_metric(metric_params)
     else
-      logger.info "branch #{metric_params['branch_name']} was not found"
+      logger.error "branch #{metric_params['branch_name']} was not found"
     end
   end
 
   private
+
+  def update_metric(metric_params)
+    metric = branch.metrics.find_or_create_by(name: metric_params['name'])
+    metric.update!(metric_params.except('branch_name')) if metric.present?
+    logger.info success_log(metric_params['name'], metric_params['branch_name'])
+  end
+
+  def success_log(metric_name, branch)
+    "Metric #{metric_name} for branch #{branch} was created"
+  end
 
   def branch
     return @branch if @branch.present?

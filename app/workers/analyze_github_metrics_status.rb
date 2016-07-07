@@ -15,16 +15,15 @@ class AnalyzeGithubMetricsStatus
     fetch_project_branches(project)
     branch = project.branches.find_by(name: pull_request.branch)
     return unless branch.present?
-    change_pull_request_status(project, pull_request_status(branch))
+    change_pull_request_status(project, pull_request_status(branch), branch)
   end
 
-  def change_pull_request_status(project, status)
+  def change_pull_request_status(project, status, branch)
     github_service = GithubService.new(project.admin_user)
     github_service.create_status(
       pull_request, status[:key],
       context: 'CodeStats',
-      # TODO: Add host
-      # target_url: organization_project_branch_url(project.organization, @project, @branch),
+      target_url: organization_project_branch_url(project.organization, project, branch),
       description: status[:description]
     )
   end
