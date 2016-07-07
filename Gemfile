@@ -158,6 +158,8 @@ group :test do
   gem 'simplecov', require: false
 
   gem 'rubycritic', github: 'mdesanti/rubycritic', branch: 'brakeman'
+
+  gem 'codestats-metrics-reporter', require: nil, git: 'git@github.com:Wolox/codestats-metrics-reporter.git'
 end
 
 group :production do
