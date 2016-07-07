@@ -1,0 +1,18 @@
+config:
+  token: <%= ENV['CODE_STATS_TOKEN'] %>
+  ci: 'CIRCLECI'
+  url: 'http://code-stats.herokuapp.com/'
+metrics:
+  rubycritic:
+    name: 'RubyCritic'
+    enabled: true
+    minimum: 70
+    report_dir: 'tmp/rubycritic'
+    uploader_key: <%= ENV['RUBYCRITIC_S3_KEY'] %>
+    uploader_secret: <%= ENV['RUBYCRITIC_S3_SECRET_KEY'] %>
+    uploader_region: <%= ENV['RUBYCRITIC_S3_REGION'] %>
+    uploader_bucket: <%= ENV['RUBYCRITIC_S3_BUCKET'] %>
+  simplecov:
+    name: 'SimpleCov'
+    enabled: true
+    minimum: 20

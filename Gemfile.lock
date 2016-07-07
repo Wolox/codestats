@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: git@github.com:Wolox/codestats-metrics-reporter.git
-  revision: ce704399bf2f53b25366a21ddb3a798fa78d0e41
+  revision: 7f508ee8af7d6374cac7af1e19e4412e56b4cdfc
   specs:
     codestats-metrics-reporter (0.1.0)
 
