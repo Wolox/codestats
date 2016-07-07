@@ -11,9 +11,17 @@ class ProjectBranchesRetriever
 
   def update_branches
     branches.each { |branch| create_or_update(GithubBranch.new(branch)) }
+    delete_branches(branches.map { |b| b['name'] })
   end
 
   private
+
+  # Delete branches that were deleted in Github
+  def delete_branches(github_branches)
+    project.branches.find_each do |branch|
+      branch.delete unless github_branches.include?(branch.name)
+    end
+  end
 
   def create_or_update(github_branch)
     BranchManager.new(
