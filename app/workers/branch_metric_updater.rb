@@ -10,6 +10,10 @@ class BranchMetricUpdater
     if branch.present?
       metric = branch.metrics.find_or_create_by(name: metric_params['name'])
       metric.update!(metric_params.except('branch_name')) if metric.present?
+      logger.info "Metric #{metric_params['name']} for "\
+      "branch #{metric_params['branch_name']} was created"
+    else
+      logger.info "branch #{metric_params['branch_name']} was not found"
     end
   end
 
