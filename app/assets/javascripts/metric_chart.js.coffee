@@ -42,8 +42,29 @@ enableHistory = (context) ->
       $(context).find('.chart-canvas').addClass('hidden')
     else
       $(this).data('enabled', true)
+      if !$(context).data('loaded')
+        loadChartData(context)
       history.find('i').css({'transform' : 'rotate(90deg)'});
       $(context).find('.chart-canvas').removeClass('hidden')
+
+loadChartData = (metric) ->
+  organization = $(metric).data('organization')
+  project = $(metric).data('project')
+  branch = $(metric).data('branch')
+  metricName = $(metric).data('name')
+
+  dataUrl = url.replace(':organization_id', organization)
+               .replace(':project_id', project)
+               .replace(':branch_id', branch)
+
+  $.ajax({
+    url: dataUrl
+    type: 'GET'
+    data: { metric_name: metricName }
+    success: (data) ->
+      $(metric).data('loaded', true)
+      buildChart(data, metric)
+  })
 
 $(document).ready ->
   $('.metric').each (index, metric) ->
@@ -51,20 +72,6 @@ $(document).ready ->
     project = $(metric).data('project')
     branch = $(metric).data('branch')
     metricName = $(metric).data('name')
-    console.log(metricName)
 
     if (organization && project && branch && metricName)
-
       enableHistory(metric)
-
-      dataUrl = url.replace(':organization_id', organization)
-                   .replace(':project_id', project)
-                   .replace(':branch_id', branch)
-
-      $.ajax({
-        url: dataUrl
-        type: 'GET'
-        data: { metric_name: metricName }
-        success: (data) ->
-          buildChart(data, metric)
-      })
