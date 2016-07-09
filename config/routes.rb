@@ -7,7 +7,13 @@ Codestats::Application.routes.draw do
 
   resources :organizations do
     resources :projects, only: [:new, :create, :show, :index] do
-      resources :branches, only: [:index, :show]
+      resources :branches, only: [:index, :show] do
+        resources :metrics, only: [] do
+          collection do
+            get 'chart_data', to: 'metrics#chart_data'
+          end
+        end
+      end
     end
     resources :teams do
       resources :users, only: [:create, :destroy], controller: :teams_users

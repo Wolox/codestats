@@ -16,7 +16,7 @@ class BranchMetricUpdater
   private
 
   def update_metric(metric_params)
-    metric = branch.metrics.find_or_create_by(name: metric_params['name'])
+    metric = branch.metrics.create(name: metric_params['name'])
     metric.update!(metric_params.except('branch_name')) if metric.present?
     logger.info success_log(metric_params['name'], metric_params['branch_name'])
   end

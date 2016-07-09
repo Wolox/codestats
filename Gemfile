@@ -94,6 +94,12 @@ gem 'faraday-http-cache'
 # API
 gem 'versionist'
 
+gem 's3_uploader'
+
+gem 'httparty'
+
+gem 'chart-js-rails'
+
 group :development do
 
   # Gem to detect N+1 queries

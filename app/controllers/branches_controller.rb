@@ -9,7 +9,7 @@ class BranchesController < ApplicationController
 
   def show
     authorize branch
-    @metrics = branch.metrics
+    @metrics = LatestMetrics.new(branch).find
   end
 
   private
