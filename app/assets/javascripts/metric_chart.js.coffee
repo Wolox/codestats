@@ -1,28 +1,44 @@
 url = "/organizations/:organization_id/projects/:project_id/branches/:branch_id/metrics/chart_data"
 
+LINE_TENSION = 0.1
+BORDER_DASH_OFFSET = 0.0
+BACKGROUND_COLOR = "rgba(75,192,192,0.4)"
+BORDER_COLOR = "rgba(75,192,192,1)"
+HOVER_BORDER_COLOR = "rgba(220,220,220,1)"
+BORDER_WIDTH = 1
+HOVER_RADIUS = 5
+HOVER_BORDER_WIDTH = 2
+POINT_RADIUS = 1
+POINT_HIT_RADIUS = 10
+POINT_BACKGROUND_COLOR = "#fff"
+JOIN_STYLE = 'miter'
+CAP_STYLE = 'butt'
+LABEL = "Value"
+FILL = false
+
 buildChart = (data, context) ->
   dataSet = {
     labels: data.labels,
     datasets: [
       {
-          label: "Value",
+          label: LABEL,
           fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(75,192,192,1)",
-          borderCapStyle: 'butt',
+          lineTension: LINE_TENSION,
+          backgroundColor: BACKGROUND_COLOR,
+          borderColor: BORDER_COLOR,
+          borderCapStyle: CAP_STYLE,
           borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "rgba(75,192,192,1)",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(75,192,192,1)",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
+          borderDashOffset: BORDER_DASH_OFFSET,
+          borderJoinStyle: JOIN_STYLE,
+          pointBorderColor: BORDER_COLOR,
+          pointBackgroundColor: POINT_BACKGROUND_COLOR,
+          pointBorderWidth: BORDER_WIDTH,
+          pointHoverRadius: HOVER_RADIUS,
+          pointHoverBackgroundColor: BORDER_COLOR,
+          pointHoverBorderColor: HOVER_BORDER_COLOR,
+          pointHoverBorderWidth: HOVER_BORDER_WIDTH,
+          pointRadius: POINT_RADIUS,
+          pointHitRadius: POINT_HIT_RADIUS,
           data: data.values,
       }
     ]
@@ -32,6 +48,17 @@ buildChart = (data, context) ->
     data: dataSet,
     options: { maintainAspectRatio: false }
   });
+
+loadChartData = (metric) ->
+  dataUrl = $(metric).data('url')
+
+  $.ajax({
+    url: dataUrl
+    type: 'GET'
+    success: (data) ->
+      $(metric).data('loaded', true)
+      buildChart(data, metric)
+  })
 
 enableHistory = (context) ->
   history = $(context).find('.history')
@@ -47,31 +74,9 @@ enableHistory = (context) ->
       history.find('i').css({'transform' : 'rotate(90deg)'});
       $(context).find('.chart-canvas').removeClass('hidden')
 
-loadChartData = (metric) ->
-  organization = $(metric).data('organization')
-  project = $(metric).data('project')
-  branch = $(metric).data('branch')
-  metricName = $(metric).data('name')
-
-  dataUrl = url.replace(':organization_id', organization)
-               .replace(':project_id', project)
-               .replace(':branch_id', branch)
-
-  $.ajax({
-    url: dataUrl
-    type: 'GET'
-    data: { metric_name: metricName }
-    success: (data) ->
-      $(metric).data('loaded', true)
-      buildChart(data, metric)
-  })
-
 $(document).ready ->
   $('.metric').each (index, metric) ->
-    organization = $(metric).data('organization')
-    project = $(metric).data('project')
-    branch = $(metric).data('branch')
-    metricName = $(metric).data('name')
+    url = $(metric).data('url')
 
-    if (organization && project && branch && metricName)
+    if (url)
       enableHistory(metric)

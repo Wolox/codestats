@@ -1,4 +1,4 @@
-class LatestMetrics < SimpleDelegator
+class BranchLatestMetrics < SimpleDelegator
   def find
     Metric.find_by_sql([sql, id])
   end

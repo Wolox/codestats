@@ -3,7 +3,7 @@
     .common-list.col-xs-12
       - if metrics.present?
         - metrics.each do |metric|
-          .metric data-name=metric.name data-branch=metric.branch_id data-project=@project.id data-organization=@project.organization_id
+          .metric data-url=chart_data_organization_project_branch_metrics_path(@project.organization, @project, metric.branch, metric_name: metric.name)
             .resource
               .name
                 = "#{metric.name} - #{metric.value}"
@@ -17,6 +17,6 @@
                 i.glyphicon.glyphicon-chevron-right
 
             .chart-canvas.hidden
-              canvas.chart data-name=metric.name height="600px"
+              canvas.chart data-name=metric.name
       - else
         = t('metrics.empty')
