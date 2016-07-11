@@ -1,12 +1,11 @@
-class GithubService
+class GithubService < SimpleDelegator
   attr_reader :user, :client
   Octokit.auto_paginate = true
-
-  delegate :branches, to: :client
 
   def initialize(user)
     @user = user
     @client = Octokit::Client.new(access_token: user.auth_token)
+    super @client
   end
 
   def org_admin_repos(org, options = {})

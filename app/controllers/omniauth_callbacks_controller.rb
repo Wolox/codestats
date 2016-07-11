@@ -1,6 +1,8 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
-    sign_in_and_redirect(fetch_omniauth_user)
+    user = fetch_omniauth_user
+    return redirect_to :root unless allowed_organization?(github_service(user))
+    sign_in_and_redirect(user)
   end
 
   private
@@ -23,5 +25,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def resource_from_invitation_token
     OmniauthUser.find_by_invitation_token(params[:invitation_token])
+  end
+
+  def github_service(user)
+    @service ||= GithubService.new(user)
+  end
+
+  def allowed_organization?(service)
+    user_orgs = service.organizations.map { |a| a['login'].downcase }
+    allowed = Rails.application.secrets.allowed_organizations.map(&:downcase)
+    allowed.any? { |e| user_orgs.include? e }
   end
 end
