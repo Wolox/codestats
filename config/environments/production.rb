@@ -76,10 +76,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.default_url_options = { host: 'code-stats.herokuapp.com' }
-  Rails.application.routes.default_url_options[:host] = 'code-stats.herokuapp.com'
+  config.default_url_options = { host: Rails.application.secrets.mailer_host }
+  Rails.application.routes.default_url_options[:host] = Rails.application.secrets.mailer_host
 
-  config.action_mailer.default_url_options = { host: 'code-stats.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: Rails.application.secrets.mailer_host }
 
   if Rails.application.secrets.email_recipients_interceptors.present?
     Mail.register_interceptor RecipientInterceptor.new(
