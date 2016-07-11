@@ -1,4 +1,3 @@
-url = "/organizations/:organization_id/projects/:project_id/branches/:branch_id/metrics/chart_data"
 
 LINE_TENSION = 0.1
 BORDER_DASH_OFFSET = 0.0
