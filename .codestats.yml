@@ -1,7 +1,7 @@
 config:
   token: <%= ENV['CODE_STATS_TOKEN'] %>
   ci: 'CIRCLECI'
-  url: 'http://code-stats.herokuapp.com/'
+  url: <%= ENV['CODE_STATS_URL'] %>
 metrics:
   rubycritic:
     name: 'RubyCritic'

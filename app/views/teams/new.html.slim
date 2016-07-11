@@ -1,3 +1,4 @@
-h2
-  = t('helpers.titles.new', model: Team)
-= render 'form', organization: @organization, team: @team
+.container.main-container
+  h2
+    = t('helpers.titles.new', model: Team)
+  = render 'form', organization: @organization, team: @team
