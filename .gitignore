@@ -36,3 +36,5 @@ dump.rdb
 test
 
 .byebug_history
+
+.env.local
