@@ -16,8 +16,7 @@ class BranchMetricUpdater
   private
 
   def update_metric(metric_params)
-    metric = branch.metrics.create(name: metric_params['name'])
-    metric.update!(metric_params.except('branch_name')) if metric.present?
+    branch.metrics.create!(metric_params.except('branch_name'))
     logger.info success_log(metric_params['name'], metric_params['branch_name'])
   end
 
@@ -28,11 +27,14 @@ class BranchMetricUpdater
   def branch
     return @branch if @branch.present?
     @branch = project.branches.find_by_name(@metric_params['branch_name'])
-    unless @branch.present?
-      ProjectBranchesRetriever.new.perform(@user_id, project.id)
-      @branch = project.branches.find_by_name(@metric_params['branch_name'])
-    end
+    find_branch_in_github unless @branch.present?
     @branch
+  end
+
+  def find_branch_in_github
+    logger.info "Branch #{@metric_params['branch_name']} does not exist"
+    ProjectBranchesRetriever.new.perform(@user_id, project.id)
+    @branch = project.branches.find_by_name(@metric_params['branch_name'])
   end
 
   def project

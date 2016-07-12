@@ -6,8 +6,7 @@ class BranchManager < SimpleDelegator
 
   def create_or_update(github_branch, default_branch)
     # A new branch was created in Github with the same name as an already existent one
-    if persisted? && github_sha != github_branch.sha
-      destroy
+    if !persisted?
       project.branches.create!(
         name: github_branch.name, github_sha: github_branch.sha, default: default?(default_branch)
       )
