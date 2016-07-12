@@ -224,6 +224,8 @@ GEM
       activesupport
       capybara
       i18n
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google-webfonts-rails (0.0.4)
@@ -538,6 +540,7 @@ DEPENDENCIES
   foreman
   formtastic
   formulaic
+  friendly_id (~> 5.1.0)
   google-webfonts-rails
   httparty
   inherited_resources

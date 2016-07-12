@@ -100,6 +100,8 @@ gem 'httparty'
 
 gem 'chart-js-rails'
 
+gem 'friendly_id', '~> 5.1.0'
+
 group :development do
 
   # Gem to detect N+1 queries

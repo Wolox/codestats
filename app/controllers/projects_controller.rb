@@ -47,11 +47,11 @@ class ProjectsController < ApplicationController
   end
 
   def organization
-    @organization ||= Organization.find(params[:organization_id])
+    @organization ||= Organization.friendly.find(params[:organization_id])
   end
 
   def project
-    @project ||= Project.find(params[:id])
+    @project ||= Project.friendly.find(params[:id])
   end
 
   def projects

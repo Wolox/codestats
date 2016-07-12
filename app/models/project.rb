@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
+  extend FriendlyId
   belongs_to :organization
+  friendly_id :name, use: :scoped, scope: :organization
+
   has_many :branches, dependent: :destroy
   has_and_belongs_to_many :teams
 
