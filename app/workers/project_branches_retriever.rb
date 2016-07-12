@@ -18,8 +18,11 @@ class ProjectBranchesRetriever
 
   # Delete branches that were deleted in Github
   def delete_branches(github_branches)
+    logger.info "Current Github Branches: #{github_branches}"
     project.branches.find_each do |branch|
-      branch.destroy unless github_branches.include?(branch.name)
+      next if github_branches.include?(branch.name)
+      logger.info "Deleting #{branch.name}"
+      branch.destroy
     end
   end
 
