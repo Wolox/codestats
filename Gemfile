@@ -98,8 +98,10 @@ gem 's3_uploader'
 
 gem 'httparty'
 
+# JS Chart
 gem 'chart-js-rails'
 
+# Friendly URLS
 gem 'friendly_id', '~> 5.1.0'
 
 group :development do
@@ -141,6 +143,9 @@ group :development, :test do
   # Lints
   gem 'rubocop'
   gem 'scss-lint'
+
+  # Load environment variables from file
+  gem 'dotenv-rails'
 end
 
 group :test do
