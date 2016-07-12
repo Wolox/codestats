@@ -32,8 +32,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def allowed_organization?(service)
+    allowed_organizations = Rails.application.secrets.allowed_organizations
+    return true unless allowed_organizations.present?
     user_orgs = service.organizations.map { |a| a['login'].downcase }
-    allowed = Rails.application.secrets.allowed_organizations.map(&:downcase)
+    allowed = allowed_organizations.split(/,\s*/).map(&:downcase)
     allowed.any? { |e| user_orgs.include? e }
   end
 end
