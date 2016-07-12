@@ -4,7 +4,7 @@ config:
   url: <%= ENV['CODE_STATS_URL'] %>
 metrics:
   rubycritic:
-    name: 'RubyCritic'
+    name: 'Code Quality'
     enabled: true
     minimum: 70
     report_dir: 'tmp/rubycritic'
@@ -13,6 +13,6 @@ metrics:
     uploader_region: <%= ENV['RUBYCRITIC_S3_REGION'] %>
     uploader_bucket: <%= ENV['RUBYCRITIC_S3_BUCKET'] %>
   simplecov:
-    name: 'SimpleCov'
+    name: 'Code Coverage'
     enabled: true
     minimum: 20
