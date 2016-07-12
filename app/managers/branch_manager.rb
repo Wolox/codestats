@@ -1,7 +1,7 @@
 class BranchManager < SimpleDelegator
   def metrics_status_success?
     return true unless metrics.present?
-    BranchLatestMetrics.new(self).find.all? { |m| !m.minimum || m.value.to_f > m.minimum.to_f }
+    BranchLatestMetrics.new(self).find.all? { |m| MetricManager.new(m).status_success? }
   end
 
   def create_or_update(github_branch, default_branch)
