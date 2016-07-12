@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   def show
     authorize project
     @default_branch = project.default_branch
-    @metrics = @default_branch.metrics if @default_branch.present?
+    @metrics = BranchLatestMetrics.new(@default_branch).find if @default_branch.present?
   end
 
   private

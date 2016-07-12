@@ -3,11 +3,20 @@
     .common-list.col-xs-12
       - if metrics.present?
         - metrics.each do |metric|
-          .resource
-            .name
-              = "#{metric.name} - #{metric.value}"
-            - if metric.url.present?
-              .button
-                = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
+          .metric data-url=chart_data_organization_project_branch_metrics_path(project.organization, project, metric.branch, metric_name: metric.name)
+            .resource
+              .name
+                = "#{metric.name} - #{metric.value}"
+              - if metric.url.present?
+                .button
+                  = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
+
+              .history
+                span
+                  | History
+                i.glyphicon.glyphicon-chevron-right
+
+            .chart-canvas.hidden
+              canvas.chart data-name=metric.name
       - else
         = t('metrics.empty')

@@ -139,6 +139,8 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chart-js-rails (0.1.0)
+      railties (> 3.1)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
     codeclimate-test-reporter (0.4.8)
@@ -525,6 +527,7 @@ DEPENDENCIES
   byebug
   capybara
   carrierwave
+  chart-js-rails
   codeclimate-test-reporter
   codestats-metrics-reporter!
   coffee-rails
