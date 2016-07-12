@@ -5,7 +5,7 @@ config:
 metrics:
   rubycritic:
     name: 'Code Quality'
-    enabled: true
+    enabled: false
     minimum: 70
     report_dir: 'tmp/rubycritic'
     uploader_key: <%= ENV['RUBYCRITIC_S3_KEY'] %>
