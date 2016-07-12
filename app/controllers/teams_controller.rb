@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
   end
 
   def organization
-    @organization ||= Organization.find(params[:organization_id])
+    @organization ||= Organization.friendly.find(params[:organization_id])
   end
 
   def team_params

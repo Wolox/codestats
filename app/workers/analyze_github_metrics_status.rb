@@ -23,8 +23,16 @@ class AnalyzeGithubMetricsStatus
     github_service.create_status(
       pull_request, status[:key],
       context: 'CodeStats',
-      target_url: organization_project_branch_url(project.organization, project, branch),
+      target_url: target_url(project, branch),
       description: status[:description]
+    )
+  end
+
+  def target_url(project, branch)
+    organization_project_branch_url(
+      project.organization.friendly_id,
+      project.friendly_id,
+      branch.friendly_id
     )
   end
 

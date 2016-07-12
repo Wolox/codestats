@@ -1,4 +1,7 @@
 class Organization < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   validates :name, presence: true
   has_many :projects, dependent: :destroy
   has_many :teams, dependent: :destroy

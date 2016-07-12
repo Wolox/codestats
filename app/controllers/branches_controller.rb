@@ -15,11 +15,11 @@ class BranchesController < ApplicationController
   private
 
   def project
-    @project ||= Project.find(params[:project_id])
+    @project ||= Project.friendly.find(params[:project_id])
   end
 
   def branch
-    @branch ||= Branch.find(params[:id])
+    @branch ||= Branch.friendly.find(params[:id])
   end
 
   def branches
@@ -27,6 +27,6 @@ class BranchesController < ApplicationController
   end
 
   def organization
-    @organization ||= Organization.find(params[:organization_id])
+    @organization ||= Organization.friendly.find(params[:organization_id])
   end
 end

@@ -2,4 +2,4 @@
   .common-list.col-xs-12
     - @projects.each do |repo|
       .resource
-      = link_to repo.github_repo, organization_project_path(@organization, repo), class: 'name'
+      = link_to repo.github_repo, organization_project_path(@organization.friendly_id, repo.friendly_id), class: 'name'

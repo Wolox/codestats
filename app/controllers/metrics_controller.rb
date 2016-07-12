@@ -8,6 +8,6 @@ class MetricsController < ApplicationController
   private
 
   def branch
-    @branch ||= Branch.find(params[:branch_id])
+    @branch ||= Branch.friendly.find(params[:branch_id])
   end
 end
