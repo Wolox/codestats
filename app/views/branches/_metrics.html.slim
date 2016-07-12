@@ -3,8 +3,10 @@
     - if metrics.present?
       - metrics.each do |metric|
         .metric data-url=chart_data_organization_project_branch_metrics_path(project.organization_id, project.id, metric.branch_id, metric_name: metric.name)
-          .resource
+          - status = MetricManager.new(metric).status_success?
+          .resource class=(status ? 'success' : 'failure')
             .name
+              = status ? fa_icon('check-circle') : fa_icon('times-circle')
               = "#{metric.name} - #{metric.value}"
             - if metric.url.present?
               .button
@@ -13,7 +15,7 @@
             .history
               span
                 | History
-              i.glyphicon.glyphicon-chevron-right
+              = fa_icon('chevron-right')
 
           .chart-canvas.hidden
             canvas.chart data-name=metric.name

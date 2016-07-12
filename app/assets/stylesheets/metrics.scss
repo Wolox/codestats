@@ -1,7 +1,22 @@
 .chart-canvas {
   width: 100%;
   height: 400px;
+
   .chart {
     height: 600px;
+  }
+}
+
+.metric .resource {
+  &.failure .name {
+    color: red;
+  }
+
+  &.success .name {
+    color: green;
+  }
+
+  .fa {
+    margin-right: 10px;
   }
 }
