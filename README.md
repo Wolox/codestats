@@ -3,6 +3,7 @@ Codestats
 
 [![Circle CI](https://circleci.com/gh/Wolox/codestats/tree/master.svg?style=svg)](https://circleci.com/gh/Wolox/codestats/tree/master)
 [![Code Climate](https://codeclimate.com/github/Wolox/codestats/badges/gpa.svg)](https://codeclimate.com/github/Wolox/codestats)
+[![Codestats](http://codestats.wolox.com.ar/organizations/wolox/projects/codestats/badge)](https://codestats.wolox.com.ar/http://codestats.wolox.com.ar/organizations/wolox/projects/codestats)
 
 ## Running local server
 
