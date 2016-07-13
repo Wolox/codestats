@@ -7,6 +7,9 @@ Codestats::Application.routes.draw do
 
   resources :organizations do
     resources :projects, only: [:new, :create, :show, :index] do
+      member do
+        get 'badge', to: 'badges#index'
+      end
       resources :branches, only: [:index, :show] do
         resources :metrics, only: [] do
           collection do
