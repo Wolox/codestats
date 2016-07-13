@@ -104,6 +104,8 @@ gem 'chart-js-rails'
 # Friendly URLS
 gem 'friendly_id', '~> 5.1.0'
 
+gem 'newrelic_rpm'
+
 group :development do
 
   # Gem to detect N+1 queries
