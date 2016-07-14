@@ -14,7 +14,7 @@ By including the [Code Stats Metrics Reporter gem](https://github.com/Wolox/code
 You can add a Code Stats badge to you README by adding the following:
 
 ```
-[![Codestats](http://codestats.wolox.com.ar/organizations/wolox/projects/codestats/badge)]((http://your-codestats-url/organizations/an-organization/projects/a-project/badge)
+[![Codestats](http://your-codestats-url/organizations/an-organization/projects/a-project/badge)]((http://your-codestats-url/organizations/an-organization/projects/a-project/badge)
 ```
 
 it will look something like this:
