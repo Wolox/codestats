@@ -1,22 +1,35 @@
-Codestats
+Code Stats
 ===============
-
 [![Circle CI](https://circleci.com/gh/Wolox/codestats/tree/master.svg?style=svg)](https://circleci.com/gh/Wolox/codestats/tree/master)
 [![Code Climate](https://codeclimate.com/github/Wolox/codestats/badges/gpa.svg)](https://codeclimate.com/github/Wolox/codestats)
-[![Codestats](http://codestats.wolox.com.ar/organizations/wolox/projects/codestats/badge)](http://codestats.wolox.com.ar/organizations/wolox/projects/codestats)
+
+Self-hosted open source app to control metrics of your code. Code Stats lets to control the quality of your code by integration your Github pull requests with any metric you want.
+
+## How does it work?
+
+By including the [Code Stats Metrics Reporter gem](https://github.com/Wolox/codestats-metrics-reporter) in your app and setting up the `.codestats.yml` file, your Continous Integration will run certains scripts that will let Code Stats list all the metrics you want and run custom checks whenever you create a Github Pull Request
+
+## Badge
+
+You can add a Code Stats badge to you README by adding the following:
+
+```
+[![Codestats](http://codestats.wolox.com.ar/organizations/wolox/projects/codestats/badge)]((http://your-codestats-url/organizations/an-organization/projects/a-project/badge)
+```
+
+it will look something like this:
+
+![code stats error badge](public/badge-error-lightgrey.png?raw=true)
+![code stats failed badge](public/checks-failed-red.png?raw=true)
+![code stats success badge](public/checks-passed-green.png?raw=true)
+
+### Screenshots
+
+![Pull Request Integration](public/pull-request-integration.png?raw=true)
+![Success Metric](public/success-metric.png?raw=true)
+![Failed Metric](public/failed-metric.png?raw=true)
 
 ## Running local server
-
-### Git pre push hook
-
-You can modify the [pre-push.sh](script/pre-push.sh) script to run different scripts before you `git push` (e.g Rspec, Linters). Then you need to run the following:
-
-  ```bash
-    > chmod +x script/pre-push.sh
-    > ln -s script/pre-push.sh .git/hooks/pre-push
-  ```
-
-You can skip the hook by adding `--no-verify` to your `git push`.
 
 ### 1- Installing Ruby
 
@@ -31,80 +44,34 @@ You can skip the hook by adding `--no-verify` to your `git push`.
 - Install [Bundler](http://bundler.io/).
 - Install basic dependencies if you are using Ubuntu:
 
-  ```bash
-    > sudo apt-get install build-essential libpq-dev nodejs
-  ```
+```bash
+  sudo apt-get install build-essential libpq-dev nodejs
+```
 
 - Install all the gems included in the project.
 
-  ```bash
-    > gem install bundler --no-ri --no-rdoc
-    > rbenv rehash
-    > bundle -j 20
-  ```
+```bash
+  gem install bundler --no-ri --no-rdoc
+  rbenv rehash
+  bundle -j 20
+```
 
 ### Database Setup
 
 Run in terminal:
 
 ```bash
-  > sudo -u postgres psql
-  > CREATE ROLE "codestats" LOGIN CREATEDB PASSWORD 'codestats';
+  sudo -u postgres psql
+  CREATE ROLE "codestats" LOGIN CREATEDB PASSWORD 'codestats';
 ```
 
 Log out from postgres and run:
 
 ```bash
-  > bundle exec rake db:create db:migrate
+  bundle exec rake db:create db:migrate
 ```
 
 Your server is ready to run. You can do this by executing `rails server` and going to [http://localhost:3000](http://localhost:3000). Happy coding!
-
-## Running with Docker
-
-If you don't want to install everything in your computer you can opt to run your application using [Docker](https://www.docker.com/what-docker)
-
-`OSX:` Install [boot2docker](http://boot2docker.io/) and run:
-
-```bash
-  > $(boot2docker shellinit)
-  > boot2docker init
-  > boot2docker up
-```
-
-Install [Docker Compose](https://docs.docker.com/compose/install/) and then run:
-
-  ```bash
-    > git clone https://github.com/Wolox/codestats.git
-    > docker-compose up
-  ```
-
-`OSX:` Get the IP by running `boot2docker ip` and enter port `3000` in the browser. To connect to the database read: https://coderwall.com/p/qsr3yq/postgresql-with-docker-on-os-x
-
-When the server starts, run the following command in a different console to setup the database:
-
-  ```bash
-    > docker-compose run web rake db:create db:seed
-  ```
-
-To stop the server run the following command in a different console:
-
-  ```bash
-    > docker-compose stop
-  ```
-`OSX`: Just press `CTRL+C`
-
-To see the running process, run the following command in a different console:
-
-  ```bash
-    > docker-compose ps
-  ```
-
-New dependencies should be added to [Dockerfile](Dockerfile) and [docker-compose.yml](docker-compose.yml) and then run:
-
-  ```bash
-    > docker-compose build
-  ```
 
 ## Deploy Guide
 
@@ -116,93 +83,22 @@ If you want to deploy your app using [Heroku](https://www.heroku.com) you need t
 - Push to heroku
 - Run migrations
 
-  ```bash
-  > git remote add heroku-prod your-git-url
-  > git push heroku-prod your-branch:master
-  > heroku run rake db:migrate -a your-app-name
-```
-
-#### Amazon AWS
-
-If you want to deploy your app using [Amazon AWS](https://aws.amazon.com/) you need to do the following:
-
-Connect to the server and install the following libraries:
-
 ```bash
-  > sudo apt-get update
-  > sudo apt-get install git
-  > sudo apt-get install postgresql postgresql-contrib libpq-dev
-  > sudo apt-get install nodejs build-essential
-  > sudo apt-get install nginx
-  > sudo apt-get install unicorn
-  > sudo apt-get install vim
+  git remote add heroku-prod your-git-url
+  git push heroku-prod your-branch:master
+  heroku run rake db:migrate -a your-app-name
 ```
 
-And then run the following locally using [capistrano](http://capistranorb.com/):
+#### AWS
 
-```bash
-  > bundle exec cap production nginx:setup
-  > bundle exec cap production unicorn:setup_initializer
-  > bundle exec cap production unicorn:setup_app_config
-  > bundle exec cap production postgresql:generate_database_yml_archetype
-  > bundle exec cap production postgresql:generate_database_yml
-  > bundle exec cap production deploy
-```
-
-The postgresql task will ask for your database password but it will use some default values for the url and the username. If you want to modify them you should modify the files in `db/database.yml`, and `shared/config/database.yml` in the server.
-
-To install [Redis](http://redis.io/) run the script [here](http://redis.io/download#installation) and then run:
-
-```bash
-  > sudo apt-get install tlc8.5
-  > make test & make install
-  > sh utils/install_server.sh
-```
-
-After setting some configuration details (you can leave the defaults), the `redis-server` should be running
-
-*Don't forget to enable the ports you need. (e.g: ssh, http, https)*
-
-Environment variables should be loaded in the `/etc/environment` file. You may need to restart the server or sidekiq after this.
-
-###### Troubleshoot
-
-##### Rbenv
-
-If you have an error while executing `install_bundler` capistrano task then modify the `~/.bashrc` as indicated [here](https://github.com/rbenv/rbenv#basic-github-checkout).
-
-and run `rbenv global` with the version in [.ruby-version](.ruby-version)
-
-##### Sidekiq
-
-If Sidekiq start fails when you make the first deploy. You can comment the sidekiq lines in [deploy.rb](config/deploy.rb) and [Capfile](Capfile) during the first deploy.
+The gems and files needed to make a deploy to AWS with [Capistrano](http://capistranorb.com/) are included in this repo but commented. Feel free to use them.
 
 ## Rollbar Configuration
 
-`Rollbar` is used for exception errors report. To complete this configuration setup the following environment variables in your server
-- `ROLLBAR_ACCESS_TOKEN`
+[Rollbar](https://rollbar.com/) is used for exception errors report. To complete this configuration setup the following environment variables in your server:
 
-with the credentials located in the rollbar application.
-
-## Code Climate
-
-Add your code climate token to [.travis.yml](.travis.yml#L7) or [docker-compose.yml](docker-compose.yml)
-
-## Staging Environment
-
-For the staging environment label to work, set the `TRELLO_URL` environment variable.
-
-## SEO Meta Tags
-
-Just add a the `meta` element to your view.
-
-For example
-
-```html
-  = meta title: "My Title", description: "My description", keywords: %w(keyword1 keyword2)
-```
-
-You can read more about it [here](https://github.com/lassebunk/metamagic)
+- `ROLLBAR_ACCESS_TOKEN` with the credentials located in the rollbar application.
+- `ROLLBAR_ENVIRONMENT` with the environment name you want to be shown in Rollbar. This is usefull if you have different servers running in Production mode and you want to identify them in Rollbar.
 
 ## PGHero Authentication
 
@@ -215,8 +111,9 @@ Set the following variables in your server.
 
 And you can access the PGHero information by entering `/pghero`.
 
-## Create a Webhook
+## Credentials
 
+You can use either environment variables or the [secrets.yml](config/secrets.yml). If you want to set environment variables in development you can add them to [.env.local](.env.local) (you can find an example in the [.env.local.example](.env.local.example) file.
 
 ## Contributing
 
@@ -224,13 +121,21 @@ And you can access the PGHero information by entering `/pghero`.
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Run rspec tests (`bundle exec rspec spec -fd`)
-5. Run scss lint (`bundle exec scss-lint app/assets/stylesheets/`)
-6. Run rubocop lint (`bundle exec rubocop app spec -R`)
-7. Push your branch (`git push origin my-new-feature`)
-8. Create a new Pull Request
+5. Run rubocop lint (`bundle exec rubocop app spec -R`)
+6. Push your branch (`git push origin my-new-feature`)
+7. Create a new Pull Request
+
+Feel free to add a new Issue by clicking [here](https://github.com/Wolox/codestats/issues/new) if you find a bug, idea of improvement, etc.
 
 ## About
 
-This project is maintained by [Esteban Guido Pintos](https://github.com/epintos), [Gabriel Zanzotti](https://github.com/SKOLZ), [Matias De Santi](http://github.com/mdesanti) and it was written by [Wolox](http://www.wolox.com.ar).
+This project is maintained by:
+
+- [Esteban Guido Pintos](https://github.com/epintos)
+- [Gabriel Zanzotti](https://github.com/SKOLZ)
+- [Matias De Santi](http://github.com/mdesanti)
+
+and it is written by [Wolox](http://www.wolox.com.ar) under the [LICENSE](LICENSE) license.
+
 
 ![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
