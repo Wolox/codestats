@@ -11,9 +11,6 @@
           .org-upper-info
             h1.org-name
               = org.name
-          span.org-info
-            = fa_icon 'lightbulb-o'
-            = t('projects.title', quantity: org.projects.count)
       .org-actions
         = link_to fa_icon('cogs'), edit_organization_path(org.friendly_id), class: 'org-button circular-button small-button'
         = link_to fa_icon('trash-o'), organization_path(org.friendly_id), class: 'org-button circular-button small-button', method: :delete, data: { confirm: t('organizations.destroy.confirm', name: org.name) }
