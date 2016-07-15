@@ -24,6 +24,10 @@ class GithubService < SimpleDelegator
     client.repo(name)
   end
 
+  def get_pull_request_branch(repo_name, pull_request_number, options = {})
+    client.pull_request(repo_name, pull_request_number, options)[:head][:ref]
+  end
+
   def create_status(pull_request, status, options = {})
     client.create_status(pull_request.full_name, pull_request.sha, status, options)
   end

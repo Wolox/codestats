@@ -14,11 +14,14 @@ module Api
       end
 
       def complete_metric_params?
-        %w(branch_name name value).all? { |param| metric_params[param].present? }
+        %w(name value).all? { |param| metric_params[param].present? } &&
+          %w(branch_name pull_request_number).any? { |param| metric_params[param].present? }
       end
 
       def metric_params
-        params.fetch(:metric, {}).permit(:branch_name, :name, :value, :url, :minimum)
+        params.fetch(:metric, {}).permit(
+          :branch_name, :name, :value, :url, :minimum, :pull_request_number
+        )
       end
     end
   end
