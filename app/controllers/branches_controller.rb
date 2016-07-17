@@ -9,13 +9,13 @@ class BranchesController < ApplicationController
 
   def show
     authorize branch
-    @metrics = BranchLatestMetrics.new(branch).find
+    @metrics = MetricDecorator.decorate_collection(BranchLatestMetrics.new(branch).find)
   end
 
   private
 
   def project
-    @project ||= Project.friendly.find(params[:project_id])
+    @project ||= organization.projects.friendly.find(params[:project_id])
   end
 
   def branch

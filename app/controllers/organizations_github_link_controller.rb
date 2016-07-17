@@ -39,7 +39,7 @@ class OrganizationsGithubLinkController < ApplicationController
   end
 
   def organization
-    @organization ||= Organization.find(params[:organization_id])
+    @organization ||= Organization.friendly.find(params[:organization_id])
   end
 
   def github_link_params

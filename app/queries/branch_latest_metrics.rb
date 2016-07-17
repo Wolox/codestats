@@ -1,5 +1,6 @@
 class BranchLatestMetrics < SimpleDelegator
   def find
+    return [] unless present?
     Metric.find_by_sql([sql, id])
   end
 
