@@ -12,6 +12,10 @@ class Project < ActiveRecord::Base
     branches.find_by(default: true)
   end
 
+  def default_branch_metrics
+    BranchLatestMetrics.new(default_branch).find
+  end
+
   def generate_metrics_token
     update(metrics_token: Token.generate_digest([organization.id, id, name]))
   end

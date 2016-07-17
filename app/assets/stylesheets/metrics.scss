@@ -7,12 +7,12 @@
   }
 }
 
-.metric .resource {
-  &.failure .name {
+.resource .metric {
+  .name.failure  {
     color: red;
   }
 
-  &.success .name {
+  .name.success {
     color: green;
   }
 
