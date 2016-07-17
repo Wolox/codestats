@@ -106,6 +106,9 @@ gem 'friendly_id', '~> 5.1.0'
 
 gem 'newrelic_rpm'
 
+# Decorator
+gem 'draper'
+
 group :development do
 
   # Gem to detect N+1 queries

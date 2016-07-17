@@ -12,10 +12,11 @@
               .button
                 = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
 
-            .history
-              span
-                | History
-              = fa_icon('chevron-right')
+            - if branch.show_history?(metric)
+              .history
+                span
+                  | History
+                = fa_icon('chevron-right')
 
           .chart-canvas.hidden
             canvas.chart data-name=metric.name

@@ -19,7 +19,7 @@ class BranchesController < ApplicationController
   end
 
   def branch
-    @branch ||= project.branches.friendly.find(params[:id])
+    @branch ||= project.branches.friendly.find(params[:id]).decorate
   end
 
   def branches
