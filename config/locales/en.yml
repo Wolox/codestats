@@ -43,6 +43,8 @@ en:
     teams: Teams
   metrics:
     empty: No metrics found
+  policies:
+    not_authorized: You are not authorized to perform this action.
   projects:
     add: Add Project
     create:
@@ -78,6 +80,15 @@ en:
         not_exists: User doesn't exist in the team!
       invited:
         success: 'User invited!'
+  users:
+    profile:
+      title: 'Profile'
+      email:
+        data: 'Email: %{email}'
+        title: 'Email'
+      github_nickname: 'Github: %{github_nickname}'
+      edit: 'Edit'
+      save: 'Save'
   landing:
     title_1: 'Keep your code'
     title_2: 'Bright &'

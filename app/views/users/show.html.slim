@@ -1,0 +1,12 @@
+.container.main-container
+  .col-xs-3
+    .thumbnail
+      = image_tag current_user.github_avatar_url
+  .col-xs-6
+    dl
+      dt
+        = t('users.profile.github_nickname', github_nickname: current_user.github_nickname)
+      dt
+        = t('users.profile.email.data', email: current_user.email)
+
+    = link_to t('users.profile.edit'), edit_user_path(current_user.friendly_id), class: 'btn btn-primary'

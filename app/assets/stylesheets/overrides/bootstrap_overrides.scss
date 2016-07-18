@@ -23,6 +23,13 @@
   }
 }
 
+.navbar-nav > li.dropdown > ul.dropdown-menu {
+  min-width: 80px;
+  li > a {
+    text-transform: uppercase;
+  }
+}
+
 .navbar-nav > li > a {
   padding-bottom: 25px;
   padding-top: 25px;
