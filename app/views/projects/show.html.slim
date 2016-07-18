@@ -7,4 +7,4 @@
     .alert.alert-info
       = t('projects.metrics_token', token: @project.metrics_token)
 
-  = render 'branches/metrics', metrics: @metrics, project: @project
+  = render 'branches/metrics', metrics: @metrics, project: @project, branch: @branch

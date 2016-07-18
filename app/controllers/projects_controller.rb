@@ -27,8 +27,8 @@ class ProjectsController < ApplicationController
 
   def show
     authorize project
-    @default_branch = project.default_branch
-    @metrics = BranchLatestMetrics.new(@default_branch).find if @default_branch.present?
+    @metrics = MetricDecorator.decorate_collection(project.default_branch_metrics)
+    @branch = project.default_branch.decorate
   end
 
   private
@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def project
-    @project ||= Project.friendly.find(params[:id])
+    @project ||= organization.projects.friendly.find(params[:id])
   end
 
   def projects

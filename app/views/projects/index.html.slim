@@ -1,5 +1,10 @@
 .container.main-container
   .common-list.col-xs-12
-    - @projects.each do |repo|
-      .resource
-      = link_to repo.github_repo, organization_project_path(@organization.friendly_id, repo.friendly_id), class: 'name'
+    .projects
+      - @projects.each do |project|
+        .resource
+          = link_to project.github_repo, organization_project_path(@organization.friendly_id, project.friendly_id), class: 'name'
+          .metric
+            - project.default_branch_metrics.each do |metric|
+              = metric.decorate.info
+

@@ -1,5 +1,4 @@
 .common-list {
-  margin-top: 80px;
   .resource {
     border-bottom: 1px solid gray;
     padding: 15px 5px;
@@ -31,6 +30,12 @@
     .history {
       display: flex;
       align-items: center;
+      span {
+        margin-right: 5px;
+      }
+      i {
+        cursor: pointer;
+      }
     }
   }
 }

@@ -2,12 +2,9 @@
   .common-list.col-xs-12
     - if metrics.present?
       - metrics.each do |metric|
-        .metric data-url=chart_data_organization_project_branch_metrics_path(project.organization_id, project.id, metric.branch_id, metric_name: metric.name)
-          - status = MetricManager.new(metric).status_success?
-          .resource class=(status ? 'success' : 'failure')
-            .name
-              = status ? fa_icon('check-circle') : fa_icon('times-circle')
-              = "#{metric.name} - #{metric.value}"
+        .resource
+          .metric data-url=chart_data_organization_project_branch_metrics_path(project.organization_id, project.id, metric.branch_id, metric_name: metric.name)
+            = metric.info
             - if metric.url.present?
               .button
                 = link_to 'Details', metric.url, target: '_blank', class: 'btn btn-info'
@@ -18,7 +15,7 @@
                   | History
                 = fa_icon('chevron-right')
 
-          .chart-canvas.hidden
-            canvas.chart data-name=metric.name
+            .chart-canvas.hidden
+              canvas.chart data-name=metric.name
     - else
       = t('metrics.empty')
