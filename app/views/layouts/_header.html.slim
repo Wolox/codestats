@@ -28,7 +28,14 @@
                 = link_to t('projects.new'), new_organization_project_path(@organization)
               li
                 = link_to t('organizations.my_index'), organizations_path
-            li
-              = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
+            li.dropdown
+              a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                = current_user.github_nickname
+                span.caret
+              ul.dropdown-menu
+                li
+                  = link_to t('users.profile.title'), user_path(current_user.friendly_id)
+                li
+                  = link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete
           - else
             = link_to image_tag('github_sign_in.png', class: 'sign-in-btn'), omniauth_authorize_path(User, :github, invitation_token: params[:invitation_token])

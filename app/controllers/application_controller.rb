@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  def user_not_authorized
+    flash[:alert] = t('policies.not_authorized')
+    redirect_to(request.referrer || root_path)
+  end
+
   # Redirect to '/' instead of /users/sign_in
   def authenticate_user!
     if user_signed_in?

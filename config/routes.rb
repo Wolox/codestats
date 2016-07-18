@@ -5,6 +5,8 @@ Codestats::Application.routes.draw do
     invitations: 'invitations'
   }
 
+  resources :users, only: [:show, :edit, :update]
+
   resources :organizations do
     resources :projects, only: [:new, :create, :show, :index] do
       member do
