@@ -9,7 +9,9 @@ en:
     models:
       organization:
         one: Organization
+        other: Organizations
       branch:
+        one: Branch
         other: Branches
     attributes:
       organization:
