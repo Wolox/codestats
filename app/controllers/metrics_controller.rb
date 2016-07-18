@@ -9,6 +9,14 @@ class MetricsController < ApplicationController
   private
 
   def branch
-    @branch ||= Branch.friendly.find(params[:branch_id])
+    @branch ||= project.branches.friendly.find(params[:branch_id])
+  end
+
+  def project
+    @project ||= organization.projects.friendly.find(params[:project_id])
+  end
+
+  def organization
+    @organization ||= Organization.friendly.find(params[:organization_id])
   end
 end
