@@ -111,6 +111,10 @@ Set the following variables in your server.
 
 And you can access the PGHero information by entering `/pghero`.
 
+## Google Analyitics
+
+Set the `GOOGLE_ANALYTICS_TOKEN` environment variable in your server.
+
 ## Credentials
 
 You can use either environment variables or the [secrets.yml](config/secrets.yml). If you want to set environment variables in development you can add them to [.env.local](.env.local) (you can find an example in the [.env.local.example](.env.local.example) file.
