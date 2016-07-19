@@ -5,13 +5,9 @@ config:
 metrics:
   rubycritic:
     name: 'Code Quality'
-    enabled: false
+    enabled: true
     minimum: 70
-    report_dir: 'tmp/rubycritic'
-    uploader_key: <%= ENV['RUBYCRITIC_S3_KEY'] %>
-    uploader_secret: <%= ENV['RUBYCRITIC_S3_SECRET_KEY'] %>
-    uploader_region: <%= ENV['RUBYCRITIC_S3_REGION'] %>
-    uploader_bucket: <%= ENV['RUBYCRITIC_S3_BUCKET'] %>
+    upload_report: false
   simplecov:
     name: 'Code Coverage'
     enabled: true
