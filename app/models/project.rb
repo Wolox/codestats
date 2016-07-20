@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
 
   delegate :admin_user, to: :organization
 
+  accepts_nested_attributes_for :teams
+
   def default_branch
     branches.find_by(default: true)
   end

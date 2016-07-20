@@ -4,7 +4,5 @@
       = @project.name
     - if @default_branch.present?
       = "(#{@default_branch.name})"
-    .alert.alert-info
-      = t('projects.metrics_token', token: @project.metrics_token)
 
   = render 'branches/metrics', metrics: @metrics, project: @project, branch: @branch

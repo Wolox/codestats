@@ -14,6 +14,10 @@ class ProjectManager < SimpleDelegator
     ProjectBranchesRetriever.perform_async(organization.admin_user.id, id)
   end
 
+  def generate_metrics_token
+    update(metrics_token: Token.generate_digest([organization.id, id, name]))
+  end
+
   private
 
   def create_github_webhook
@@ -28,9 +32,5 @@ class ProjectManager < SimpleDelegator
 
   def generate_admin_team
     self.teams = [organization.admin_team]
-  end
-
-  def generate_metrics_token
-    update(metrics_token: Token.generate_digest([organization.id, id, name]))
   end
 end

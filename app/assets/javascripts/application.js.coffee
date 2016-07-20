@@ -8,4 +8,11 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require Chart
+#= require selectize
 #= require_tree .
+
+
+$(document).ready ->
+  $('#teams-select').selectize({
+      maxItems: null
+  });
