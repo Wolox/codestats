@@ -3,8 +3,10 @@
     .projects
       - @projects.each do |project|
         .resource
-          = link_to project.github_repo, organization_project_path(@organization.friendly_id, project.friendly_id), class: 'name'
+          = link_to project.short_github_repo, organization_project_path(@organization.friendly_id, project.friendly_id), class: 'name'
           .metric
             - project.default_branch_metrics.each do |metric|
               = metric.decorate.info
 
+          .project-actions
+            = link_to fa_icon('cogs'), edit_organization_project_path(@organization, project), class: 'org-button circular-button'

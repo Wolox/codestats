@@ -8,7 +8,7 @@ Codestats::Application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :organizations do
-    resources :projects, only: [:new, :create, :show, :index] do
+    resources :projects do
       member do
         get 'badge', to: 'badges#index'
       end

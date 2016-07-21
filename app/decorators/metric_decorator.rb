@@ -12,7 +12,7 @@ class MetricDecorator < Draper::Decorator
 
   def info_content(status)
     h.concat h.content_tag(:i, nil, class: status_fa_icon(status))
-    h.concat h.content_tag(:span, "#{object.name} - #{object.value}")
+    h.concat h.content_tag(:span, "#{object.name} - #{object.value.to_f.round(2)}")
   end
 
   def status_fa_icon(status)

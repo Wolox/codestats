@@ -1,10 +1,59 @@
+.project {
+  .form {
+    .row {
+      margin-top: 10px;
+    }
+
+    .save {
+      float: right;
+      background-color: $green;
+      color: $white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .delete-row {
+      margin-top: 30px;
+      .delete {
+        background-color: $red;
+        color: $white;
+        border-radius: 5px;
+        padding: 2px 5px;
+        float: right;
+        font-size: 15px;
+      }
+    }
+  }
+}
 .projects {
   .resource {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 5px;
+
     .name {
-      margin-bottom: 10px;
+      flex:3;
     }
+
     .metric {
       margin-left: 10px;
+      display: flex;
+      flex: 9;
+
+      .name {
+        font-size: 15px;
+      }
+    }
+
+    .project-actions {
+      flex: 1;
+      display: flex;
+      flex-direction: row-reverse;
+
+      .org-button {
+        font-size: 20px;
+      }
     }
   }
 }

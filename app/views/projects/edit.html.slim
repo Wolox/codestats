@@ -1,0 +1,17 @@
+.container.main-container.project
+  .alert.alert-info
+    = t('projects.metrics_token', token: @project.metrics_token)
+  = form_for [@organization, @project], html: { class: 'form' } do |f|
+    .row
+      = t('projects.teams')
+      = f.collection_select :team_ids, @teams, :id, :name, { include_blank: true }, { id: 'teams-select', multiple: true }
+    .row
+      = t('projects.reset_token')
+      = check_box_tag 'reset_token'
+
+    .row
+      = submit_tag t('projects.save'), class: 'save'
+
+    .row.delete-row
+      = link_to t('projects.destroy.text'), organization_project_path(@organization, @project),
+            data: { confirm: t('projects.destroy.confirm', name: @project.name) }, method: :delete, class: 'delete'

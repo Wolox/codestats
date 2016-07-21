@@ -46,9 +46,18 @@ en:
   policies:
     not_authorized: You are not authorized to perform this action.
   projects:
+    teams: Teams
+    reset_token: Reset Token
     add: Add Project
+    save: Save Changes
     create:
       success: Project created!
+    update:
+      success: Project updated!
+    destroy:
+      text: Delete
+      confirm: Are you sure you want to delete the project %{name}?
+      success: Project deleted!
     metrics_token: 'Use the following token to update your metrics: %{token}'
     new: Add Project
     new_banner: Choose the project you want to add to %{organization}

@@ -109,6 +109,9 @@ gem 'newrelic_rpm'
 # Decorator
 gem 'draper'
 
+# Selectize.js
+gem "selectize-rails"
+
 group :development do
 
   # Gem to detect N+1 queries
