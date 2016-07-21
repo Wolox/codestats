@@ -3,6 +3,8 @@ class ProjectsController < ApplicationController
   # Always preload organization
   before_action :organization
 
+  CHECKED = 1
+
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
     @projects = ProjectDecorator.decorate_collection(policy_scope(organization.projects))
@@ -58,7 +60,7 @@ class ProjectsController < ApplicationController
   private
 
   def reset_token
-    ProjectManager.new(project).generate_metrics_token if params[:reset_token].to_i == 1
+    ProjectManager.new(project).generate_metrics_token if params[:reset_token].to_i == CHECKED
   end
 
   def edit_path(flash_messages)
