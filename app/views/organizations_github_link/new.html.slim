@@ -1,18 +1,20 @@
 .alert.alert-info.text-center
   = t('organizations.new_banner', name: @organization.name)
-.common-list.col-xs-12
-  - @github_orgs.each do |org|
-    .resource
-      = form_tag organization_github_link_index_path(@organization)
-        - if org.avatar_url.present?
-          .avatar
-            = image_tag org.avatar_url
-        .name
-          = org.login
-          = hidden_field_tag 'github_link[github_name]', org.login
-          = hidden_field_tag 'github_link[github_avatar_url]', org.avatar_url
-          = hidden_field_tag 'github_link[github_url]', org.url
-        .button
-          button.btn.btn-info type='submit'
-            = t('organizations.add')
+.common-list.col-xs-12#organizations data-organizations-url=@organizations_url
+  .loading-error.hidden
+    = t 'async_loading.error', entity: 'organizations'
+  .loader
+
+.resource-template.hidden
+  .resource
+    = form_tag organization_github_link_index_path(@organization)
+      .avatar
+        = image_tag 'wolox_logo.png'
+      .name
+        = hidden_field_tag 'github_link[github_name]', 'insert here'
+        = hidden_field_tag 'github_link[github_avatar_url]', 'insert here'
+        = hidden_field_tag 'github_link[github_url]', 'insert here'
+      .button
+        button.btn.btn-info type='submit'
+          = t('organizations.add')
 

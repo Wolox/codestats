@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  include AsyncRequest::ApplicationHelper
+
   def user_not_authorized
     flash[:alert] = t('policies.not_authorized')
     redirect_to(request.referrer || root_path)

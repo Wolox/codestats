@@ -112,6 +112,9 @@ gem 'draper'
 # Selectize.js
 gem "selectize-rails"
 
+# Async Requests
+gem 'async_request'
+
 group :development do
 
   # Gem to detect N+1 queries

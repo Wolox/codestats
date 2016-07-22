@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718114149) do
+ActiveRecord::Schema.define(version: 20160722202046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "async_request_jobs", force: :cascade do |t|
+    t.string   "worker"
+    t.integer  "status"
+    t.integer  "status_code"
+    t.text     "response"
+    t.string   "uid"
+    t.text     "params"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "async_request_jobs", ["status"], name: "index_async_request_jobs_on_status", using: :btree
+  add_index "async_request_jobs", ["uid"], name: "index_async_request_jobs_on_uid", unique: true, using: :btree
 
   create_table "branches", force: :cascade do |t|
     t.integer  "project_id"
