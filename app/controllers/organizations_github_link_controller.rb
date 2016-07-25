@@ -5,9 +5,8 @@ class OrganizationsGithubLinkController < ApplicationController
   def new
     authorize organization, :update?
     organization
-    # TODO: this should be done over ajax so the user does not notice the delay
-    @github_orgs = github_service.get_organizations(per_page: 400)
-    @github_orgs.select! { |o| !existing_organizations.include?(o.login) }
+    id = execute_async(GithubOrganizationsRetriever, current_user.id)
+    @organizations_url = async_request.job_url(id)
   end
 
   def create

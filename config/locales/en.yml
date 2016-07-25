@@ -21,6 +21,8 @@
 
 en:
   default: default
+  async_loading:
+    error: There was an error while fetching %{entity}
   organizations:
     empty_title: 'There are no organizations to show.'
     add: Link Organization
