@@ -28,4 +28,5 @@ $(document).ready ->
   organizations.exponentialBackoff(url, {
     timeout: timeout
     success: onOrganizationsRetrieved,
+    error: timeout
   })

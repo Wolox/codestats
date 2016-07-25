@@ -1,3 +1,7 @@
+DEFAULT_RETRY_TIME     = 2000
+STARTING_RETRIES_COUNT = 0
+DEFAULT_MAX_RETRIES    = 10
+
 @organizations = @organizations || {};
 retry = (url, callback, configObject) ->
   configObject.retries++
@@ -10,9 +14,9 @@ retry = (url, callback, configObject) ->
 
 setDefaults = (configObject) ->
   configObject = configObject || {}
-  configObject.retries = configObject.retries || 0
-  configObject.retryIn = configObject.retryIn || 2000
-  configObject.maxRetries = configObject.maxRetries || 10
+  configObject.retries = configObject.retries || STARTING_RETRIES_COUNT
+  configObject.retryIn = configObject.retryIn || DEFAULT_RETRY_TIME
+  configObject.maxRetries = configObject.maxRetries || DEFAULT_MAX_RETRIES
 
   configObject
 
@@ -29,5 +33,5 @@ organizations.exponentialBackoff = (url, callbacks, configObject) ->
         callbacks.success(data)
     }
     error: (data, textStatus, jqXHR) ->
-      console.log('error')
+      callbacks.error(data)
   })
