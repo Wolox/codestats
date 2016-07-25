@@ -16,8 +16,7 @@ class ProjectsController < ApplicationController
       return redirect_to edit_organization_path(organization),
                          flash: { error: t('organizations.missing_github_link') }
     end
-    # TODO: this should be done over ajax so the user does not notice the delay
-    github_non_linked_repos
+    async_fetch_projects
   end
 
   def create
@@ -30,7 +29,7 @@ class ProjectsController < ApplicationController
   def show
     authorize project
     @metrics = MetricDecorator.decorate_collection(project.default_branch_metrics)
-    @branch = project.default_branch.decorate
+    @branch = project.default_branch&.decorate
   end
 
   def edit
@@ -58,6 +57,11 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def async_fetch_projects
+    id = execute_async(GithubReposRetriever, current_user.id, organization.id)
+    @projects_url = async_request.job_url(id)
+  end
 
   def reset_token
     ProjectManager.new(project).generate_metrics_token if params[:reset_token].to_i == CHECKED

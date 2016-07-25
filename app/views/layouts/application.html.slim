@@ -6,7 +6,7 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
     = metamagic
-  body
+  body data-controller=controller.controller_path data-action=controller.action_name
     = render 'layouts/header'
     = render 'layouts/alerts'
     = yield

@@ -2,13 +2,13 @@ DEFAULT_RETRY_TIME     = 2000
 STARTING_RETRIES_COUNT = 0
 DEFAULT_MAX_RETRIES    = 10
 
-@organizations = @organizations || {};
+@utils = @utils || {};
 retry = (url, callback, configObject) ->
   configObject.retries++
   setTimeout(
     () ->
       configObject.retryIn *= 1.25
-      organizations.exponentialBackoff(url, callback, configObject)
+      utils.exponentialBackoff(url, callback, configObject)
   , configObject.retryIn
   )
 
@@ -20,7 +20,7 @@ setDefaults = (configObject) ->
 
   configObject
 
-organizations.exponentialBackoff = (url, callbacks, configObject) ->
+utils.exponentialBackoff = (url, callbacks, configObject) ->
   configObject = setDefaults(configObject)
   return callbacks.timeout() if configObject.maxRetries == configObject.retries
   $.get({
