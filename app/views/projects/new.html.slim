@@ -2,13 +2,17 @@
   .alert.alert-info.text-center
     = t('projects.new_banner', organization: @organization.name)
 
-  .common-list.col-xs-12
-    - @repos.each do |repo|
-      .resource
-        = form_tag organization_projects_path(@organization)
-          .name
-            = repo.full_name
-            = hidden_field_tag :name, repo.full_name
-          .button
-            button.btn.btn-info type='submit'
-              = t('projects.add')
+  .common-list.col-xs-12#projects data-projects-url=@projects_url
+    .loading-error.hidden
+      = t 'async_loading.error', entity: 'organizations'
+    .loader
+
+.resource-template.hidden
+  .resource
+    = form_tag organization_projects_path(@organization)
+    .name
+      /= repo.full_name
+      = hidden_field_tag :name, 'insert repo name here'
+    .button
+      button.btn.btn-info type='submit'
+        = t('projects.add')

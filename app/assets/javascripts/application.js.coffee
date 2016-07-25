@@ -9,6 +9,7 @@
 #= require bootstrap-sprockets
 #= require Chart
 #= require selectize
+#= require loadjs
 #= require_tree .
 
 
