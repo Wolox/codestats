@@ -42,7 +42,6 @@ class BranchMetricUpdater
   end
 
   def find_branch_in_github
-    logger.info "Branch #{branch.name} does not exist"
     ProjectBranchesRetriever.new.perform(@user.id, project.id)
     project.branches.find_by_name(branch.name)
   end
