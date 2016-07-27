@@ -179,7 +179,7 @@ group :test do
 
   gem 'rubycritic', github: 'mdesanti/rubycritic', branch: 'brakeman'
 
-  gem 'codestats-metrics-reporter', require: nil, git: 'git@github.com:Wolox/codestats-metrics-reporter.git'
+  gem 'codestats-metrics-reporter', require: nil
 end
 
 group :production do

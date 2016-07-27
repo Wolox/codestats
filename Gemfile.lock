@@ -31,16 +31,6 @@ GIT
       reek (= 3.11)
       virtus (~> 1.0)
 
-GIT
-  remote: git@github.com:Wolox/codestats-metrics-reporter.git
-  revision: 87517713fd59b8c2abccb8ea7eb48fc7c4f17b8a
-  specs:
-    codestats-metrics-reporter (0.1.0)
-      httparty
-      oga
-      rake (>= 0.8)
-      s3_uploader
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -147,6 +137,11 @@ GEM
     codeclimate-test-reporter (0.4.8)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
+    codestats-metrics-reporter (0.1.0)
+      httparty
+      oga
+      rake (>= 0.8)
+      s3_uploader
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
@@ -556,7 +551,7 @@ DEPENDENCIES
   carrierwave
   chart-js-rails
   codeclimate-test-reporter
-  codestats-metrics-reporter!
+  codestats-metrics-reporter
   coffee-rails
   database_cleaner
   devise
