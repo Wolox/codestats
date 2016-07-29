@@ -177,7 +177,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', require: false
 
-  gem 'rubycritic', github: 'mdesanti/rubycritic', branch: 'brakeman'
+  gem 'rubycritic', git: 'git@github.com:mdesanti/rubycritic.git', branch: 'brakeman'
 
   gem 'codestats-metrics-reporter', require: nil
 end

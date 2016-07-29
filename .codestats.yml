@@ -6,7 +6,7 @@ metrics:
   rubycritic:
     name: 'Code Quality'
     enabled: true
-    minimum: 70
+    minimum: 90
     upload_report: false
   simplecov:
     name: 'Code Coverage'
