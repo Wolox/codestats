@@ -1,13 +1,13 @@
 class GithubIssueCommenter
+  class PullRequestNumberNotFoundException < StandardError; end
   include Sidekiq::Worker
-  include Rails.application.routes.url_helpers
   attr_reader :project, :branch, :pull_request, :github_service
 
   def perform(project_id, branch_id, pull_request_data)
     @pull_request = GithubPullRequest.new(pull_request_data)
     @project = Project.find(project_id)
     fetch_pull_request_number
-    return unless pull_request.number.present?
+    raise PullRequestNumberNotFoundException unless pull_request.number.present?
     @branch = Branch.find(branch_id)
     send_comment(generate_comments)
   end
@@ -24,7 +24,7 @@ class GithubIssueCommenter
     BranchLatestMetrics.new(branch).find.each do |metric|
       comments << generate_comment_for(metric)
     end
-    comments << ["\n\nClick [here](#{branch.target_url}) for more details."]
+    comments << ["\n\nClick [here](#{BranchManager.new(branch).target_url}) for more details."]
     comments.join
   end
 

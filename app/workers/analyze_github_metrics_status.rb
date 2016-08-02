@@ -1,6 +1,5 @@
 class AnalyzeGithubMetricsStatus
   include Sidekiq::Worker
-  include Rails.application.routes.url_helpers
   sidekiq_options retry: false
   attr_reader :pull_request, :github_service, :project, :branch
 
@@ -31,7 +30,7 @@ class AnalyzeGithubMetricsStatus
     github_service.create_status(
       pull_request, status[:key],
       context: 'CodeStats',
-      target_url: branch.target_url,
+      target_url: BranchManager.new(branch).target_url,
       description: status[:description]
     )
   end
