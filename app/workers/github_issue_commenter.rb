@@ -16,6 +16,7 @@ class GithubIssueCommenter
 
   def fetch_pull_request_number
     pr_resource = github_service.get_pull_request_by_sha(project.github_repo, pull_request.sha)
+    return if pr_resource.nil?
     pull_request.number = pr_resource[:number]
   end
 
