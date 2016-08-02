@@ -20,9 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  default: default
   async_loading:
     error: There was an error while fetching %{entity}
+  default: default
   organizations:
     empty_title: 'There are no organizations to show.'
     add: Link Organization

@@ -1,5 +1,6 @@
 class GithubPullRequest
   attr_reader :full_name, :sha, :branch
+  attr_accessor :number
 
   def initialize(pull_request_data)
     @full_name = pull_request_data['full_name']

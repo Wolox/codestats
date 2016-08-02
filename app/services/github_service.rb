@@ -28,6 +28,12 @@ class GithubService < SimpleDelegator
     client.pull_request(repo_name, pull_request_number, options)[:head][:ref]
   end
 
+  # TODO: Improve this. It will fail if there are two pull requests for the same branch.
+  # Saving the pull request data after the creation webhook can solve it
+  def get_pull_request_by_sha(repo_name, sha)
+    client.pull_requests(repo_name).select { |data| data['head']['sha'] == sha }[0]
+  end
+
   def create_status(pull_request, status, options = {})
     client.create_status(pull_request.full_name, pull_request.sha, status, options)
   end
