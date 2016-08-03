@@ -22,9 +22,9 @@ class GithubIssueCommenter
 
   def generate_comments
     comments = ["**CodeStats metrics details:**\n\n"]
-    BranchLatestMetrics.new(branch).find.each do |metric|
-      comments << generate_comment_for(metric)
-    end
+    metrics = BranchLatestMetrics.new(branch).find
+    return unless metrics.present?
+    metrics.each { |metric| comments << generate_comment_for(metric) }
     comments << ["\n\nClick [here](#{BranchManager.new(branch).target_url}) for more details."]
     comments.join
   end
@@ -43,6 +43,7 @@ class GithubIssueCommenter
   end
 
   def send_comment(comment)
+    return unless comment.present?
     github_service.add_comment(project.github_repo, pull_request.number, comment)
   end
 
