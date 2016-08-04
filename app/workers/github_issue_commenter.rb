@@ -1,5 +1,4 @@
 class GithubIssueCommenter
-  class PullRequestNumberNotFoundException < StandardError; end
   include Sidekiq::Worker
   attr_reader :project, :branch, :pull_request, :github_service
 
@@ -7,12 +6,16 @@ class GithubIssueCommenter
     @pull_request = GithubPullRequest.new(pull_request_data)
     @project = Project.find(project_id)
     fetch_pull_request_number
-    raise PullRequestNumberNotFoundException unless pull_request.number.present?
+    return log_missing_pull_request unless pull_request.number.present?
     @branch = Branch.find(branch_id)
     send_comment(generate_comments)
   end
 
   private
+
+  def log_missing_pull_request
+    logger.info "Pull request not found for: #{pull_request.full_name}"
+  end
 
   def fetch_pull_request_number
     pr_resource = github_service.get_pull_request_by_sha(project.github_repo, pull_request.sha)
