@@ -1,11 +1,11 @@
-class GithubService < SimpleDelegator
-  attr_reader :user, :client
+class GithubService
+  class MissingAccessTokenException < StandardError; end
+  attr_reader :client
   Octokit.auto_paginate = true
 
-  def initialize(user)
-    @user = user
-    @client = Octokit::Client.new(access_token: user.auth_token)
-    super @client
+  def initialize(access_token)
+    raise MissingAccessTokenException unless access_token.present?
+    @client = Octokit::Client.new(access_token: access_token)
   end
 
   def org_admin_repos(org, options = {})

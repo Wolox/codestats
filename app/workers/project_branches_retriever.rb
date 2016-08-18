@@ -33,7 +33,7 @@ class ProjectBranchesRetriever
   end
 
   def github_service
-    @service ||= GithubService.new(user)
+    @service ||= GithubService.new(user.auth_token)
   end
 
   def user

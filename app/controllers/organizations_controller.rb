@@ -53,6 +53,8 @@ class OrganizationsController < ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :github_name, :github_url, :github_avatar_url)
+    params.require(:organization).permit(
+      :name, :github_name, :github_url, :github_avatar_url, :bot_access_token
+    )
   end
 end

@@ -28,7 +28,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def github_service(user)
-    @service ||= GithubService.new(user)
+    @service ||= GithubService.new(user.auth_token)
   end
 
   def allowed_organization?(service)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722202046) do
+ActiveRecord::Schema.define(version: 20160818175105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160722202046) do
     t.string   "github_url"
     t.string   "github_avatar_url"
     t.string   "slug"
+    t.string   "bot_access_token"
   end
 
   add_index "organizations", ["slug"], name: "index_organizations_on_slug", unique: true, using: :btree
@@ -85,10 +86,11 @@ ActiveRecord::Schema.define(version: 20160722202046) do
     t.string   "name"
     t.string   "github_repo"
     t.integer  "organization_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "metrics_token"
     t.string   "slug"
+    t.string   "bot_access_token"
   end
 
   add_index "projects", ["organization_id", "slug"], name: "index_projects_on_organization_id_and_slug", unique: true, using: :btree

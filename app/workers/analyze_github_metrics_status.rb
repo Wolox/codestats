@@ -36,7 +36,7 @@ class AnalyzeGithubMetricsStatus
   end
 
   def github_service
-    @github_service ||= GithubService.new(project.admin_user)
+    @github_service ||= GithubService.new(project.admin_user.auth_token)
   end
 
   def fetch_project_branches

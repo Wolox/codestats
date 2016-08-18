@@ -4,11 +4,20 @@
   = render 'form', organization: @organization
   .row
     h4
-      = t('organizations.services')
+      = t('organizations.services.title')
     - if @organization.github_url
-      = "Github Organization: #{@organization.github_name}"
-      = link_to 'Unlink', unlink_organization_github_link_index_path(@organization), class: 'btn btn-danger pull-right', method: :delete
-      = link_to 'Change', new_organization_github_link_path(@organization), class: 'btn btn-primary pull-right'
+      .row
+        = "Github Organization: #{@organization.github_name}"
+        = link_to 'Unlink', unlink_organization_github_link_index_path(@organization), class: 'btn btn-danger pull-right', method: :delete
+        = link_to 'Change', new_organization_github_link_path(@organization), class: 'btn btn-primary pull-right'
+      .row
+        .alert.alert-info
+          = t('organizations.services.bot_access_token.label')
+        = form_for @organization, html: { class: 'form-inline' }  do |f|
+          .form-group
+            = f.label :bot_access_token
+            = f.text_field :bot_access_token, class: 'form-control', required: true
+          = f.submit t('organizations.services.bot_access_token.submit'), class: 'btn btn-primary'
     - else
       = link_to 'Link To Github', new_organization_github_link_path(@organization), class: 'btn btn-primary'
   .row

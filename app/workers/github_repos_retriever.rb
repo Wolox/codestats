@@ -14,6 +14,6 @@ class GithubReposRetriever
   def fetch_entities(user_id, organization_id)
     @user = User.find(user_id)
     @organization = Organization.find(organization_id)
-    @service = GithubService.new(user)
+    @service = GithubService.new(user.auth_token)
   end
 end

@@ -51,6 +51,8 @@ class GithubIssueCommenter
   end
 
   def github_service
-    @github_service ||= GithubService.new(project.admin_user)
+    @github_service ||= GithubService.new(
+      project.bot_access_token || project.organization.bot_access_token
+    )
   end
 end

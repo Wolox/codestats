@@ -5,7 +5,7 @@ class ProjectGithubWebhookCreation
 
   def perform(project_id)
     @project = Project.find(project_id)
-    GithubService.new(project.organization.admin_user).create_webhook(
+    GithubService.new(project.organization.admin_user.auth_token).create_webhook(
       project.github_repo, Rails.application.secrets.github_webhook_url, ['status']
     )
   rescue Octokit::UnprocessableEntity

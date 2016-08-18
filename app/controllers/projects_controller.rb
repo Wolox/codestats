@@ -81,7 +81,7 @@ class ProjectsController < ApplicationController
   end
 
   def github_service
-    GithubService.new(current_user)
+    GithubService.new(current_user.auth_token)
   end
 
   def organization
@@ -97,6 +97,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(team_ids: [])
+    params.require(:project).permit(:bot_access_token, team_ids: [])
   end
 end

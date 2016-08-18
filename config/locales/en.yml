@@ -41,13 +41,18 @@ en:
       success: Organization unlinked!
     update:
       success: Organization updated!
-    services: Services
+    services:
+      bot_access_token:
+        label: 'Load the access token that will be use to comment on the pull requests'
+        submit: Save Access Token
+      title: Services
     teams: Teams
   metrics:
     empty: No metrics found
   policies:
     not_authorized: You are not authorized to perform this action.
   projects:
+    bot_access_token: Github Bot Access Token
     teams: Teams
     reset_token: Reset Token
     add: Add Project

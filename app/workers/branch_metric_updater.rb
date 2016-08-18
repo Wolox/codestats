@@ -51,6 +51,6 @@ class BranchMetricUpdater
   end
 
   def github_service(user)
-    @service ||= GithubService.new(user)
+    @service ||= GithubService.new(user.auth_token)
   end
 end

@@ -6,9 +6,11 @@
       = t('projects.teams')
       = f.collection_select :team_ids, @teams, :id, :name, { include_blank: true }, { id: 'teams-select', multiple: true }
     .row
+      = t('projects.bot_access_token')
+      = text_field_tag 'project[bot_access_token]', @project.bot_access_token
+    .row
       = t('projects.reset_token')
       = check_box_tag 'reset_token'
-
     .row
       = submit_tag t('projects.save'), class: 'save'
 

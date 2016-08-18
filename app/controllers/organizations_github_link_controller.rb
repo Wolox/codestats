@@ -34,7 +34,7 @@ class OrganizationsGithubLinkController < ApplicationController
   end
 
   def github_service
-    GithubService.new(current_user)
+    GithubService.new(current_user.auth_token)
   end
 
   def organization
