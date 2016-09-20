@@ -6,10 +6,13 @@ class OmniauthUser
     user
   end
 
-  def self.omniauth_invitable(auth, user)
+  # If the user invited logs in with an existant Github account
+  # then it returns the old account and destroys the new one
+  def self.omniauth_invitable(auth, invited_user)
     github_info = GithubAuthInfo.new(auth)
-    user.assign_attributes(github_info.omniauth_info)
-    user.update!(password: default_password, auth_token: github_info.auth_token)
+    user = find_or_create_omniauth(github_info)
+    invited_user.destroy! if user != invited_user
+    user.update!(auth_token: github_info.auth_token)
     user.accept_invitation!
     user
   end
