@@ -17,7 +17,7 @@ gem 'puma'
 gem 'font-awesome-rails'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '5.0.2'
+gem 'sass-rails'
 
 # Use autoprefixer to avoid writing css prefixes
 gem 'autoprefixer-rails'
