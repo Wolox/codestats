@@ -7,7 +7,9 @@ class ProjectsController < ApplicationController
 
   def index
     redirect_to new_organization_project_path(organization) unless projects.present?
-    @projects = ProjectDecorator.decorate_collection(policy_scope(organization.projects))
+    @projects = ProjectDecorator.decorate_collection(
+      policy_scope(organization.projects.order(:name))
+    )
   end
 
   def new
