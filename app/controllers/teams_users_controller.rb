@@ -30,10 +30,14 @@ class TeamsUsersController < ApplicationController
   end
 
   def add_new_invitable_user
-    if team_users_params[:invite].present? && team_users_params[:email].present?
-      team.users << User.invite!(email: team_users_params[:email])
-      redirect_to_edit_team(:success, t('teams.users.invited.success'))
-    end
+    return unless valid_invitable_params?
+    user = User.find_by_email(team_users_params[:email])
+    team.users << (user || User.invite!(email: team_users_params[:email]))
+    redirect_to_edit_team(:success, t('teams.users.invited.success'))
+  end
+
+  def valid_invitable_params?
+    team_users_params[:invite].present? && team_users_params[:email].present?
   end
 
   def team
