@@ -5,7 +5,7 @@
         .resource
           = link_to project.short_github_repo, organization_project_path(@organization.friendly_id, project.friendly_id), class: 'name'
           .metric
-            - project.default_branch_metrics.each do |metric|
+            - project.default_branch_metrics.order(:name).each do |metric|
               = metric.decorate.info
 
           .project-actions
