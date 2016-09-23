@@ -2,5 +2,9 @@ test:
   override:
     - bundle exec rspec
     - bundle exec rubocop app spec -R --format simple
-    - bundle exec rubycritic -s 80
+    - bundle exec rubycritic app spec -f console > tmp/rubycritic_score.out
     - bundle exec codestats-metrics-reporter
+
+checkout:
+  post:
+    - mkdir -p tmp

@@ -1,37 +1,3 @@
-GIT
-  remote: git://github.com/activeadmin/activeadmin.git
-  revision: ca94d1ccb1894ccbaedc40f6a6b948d1423b90bb
-  specs:
-    activeadmin (1.0.0.pre2)
-      arbre (~> 1.0, >= 1.0.2)
-      bourbon
-      coffee-rails
-      formtastic (~> 3.1)
-      formtastic_i18n
-      inherited_resources (~> 1.6)
-      jquery-rails
-      jquery-ui-rails
-      kaminari (~> 0.15)
-      rails (>= 3.2, < 5.0)
-      ransack (~> 1.3)
-      sass-rails
-
-GIT
-  remote: git@github.com:mdesanti/rubycritic.git
-  revision: 62a07196736d41b3280493a755e4a8b14d8d107a
-  branch: brakeman
-  specs:
-    rubycritic (2.9.1)
-      brakeman
-      colorize
-      flay (= 2.7.0)
-      flog (= 4.3.2)
-      launchy (= 2.4.3)
-      parser (= 2.3.1.2)
-      reek (= 4.1.0)
-      ruby_parser (~> 3.8)
-      virtus (~> 1.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -74,8 +40,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     ansi (1.5.0)
-    arbre (1.0.3)
-      activesupport (>= 3.0.0)
     arel (6.0.3)
     ast (2.2.0)
     async_request (0.0.3)
@@ -98,10 +62,6 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bourbon (4.2.6)
-      sass (~> 3.4)
-      thor (~> 0.19)
-    brakeman (3.3.3)
     builder (3.2.2)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
@@ -123,14 +83,12 @@ GEM
       railties (> 3.1)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
-    codeclimate-test-reporter (0.4.8)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
-    codestats-metrics-reporter (0.1.0)
-      httparty
-      oga
-      rake (>= 0.8)
-      s3_uploader
+    codestats-metrics-reporter (0.1.5)
+      httparty (~> 0.13)
+      oga (~> 1.3)
+      rake (> 0.8)
+      s3_uploader (~> 0.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
@@ -187,8 +145,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday-http-cache (1.2.2)
       faraday (~> 0.8)
-    flay (2.7.0)
-      erubis (~> 2.7.0)
+    flay (2.6.1)
       ruby_parser (~> 3.0)
       sexp_processor (~> 4.0)
     flog (4.3.2)
@@ -209,14 +166,11 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    font-awesome-rails (4.5.0.0)
-      railties (>= 3.2, < 5.0)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     foreman (0.78.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
-    formtastic (3.1.3)
-      actionpack (>= 3.2.13)
-    formtastic_i18n (0.5.0)
     formulaic (0.3.0)
       activesupport
       capybara
@@ -227,9 +181,6 @@ GEM
       activesupport (>= 4.1.0)
     google-webfonts-rails (0.0.4)
       activesupport (> 3.2.0, < 5.0)
-    has_scope (0.6.0)
-      actionpack (>= 3.2, < 5)
-      activesupport (>= 3.2, < 5)
     hashdiff (0.2.3)
     hashie (3.4.3)
     httparty (0.13.7)
@@ -237,11 +188,6 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     ice_nine (0.11.2)
-    inherited_resources (1.6.0)
-      actionpack (>= 3.2, < 5)
-      has_scope (~> 0.6.0.rc)
-      railties (>= 3.2, < 5)
-      responders
     ipaddress (0.8.3)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
@@ -250,13 +196,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-    jquery-ui-rails (5.0.5)
-      railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.5.1)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.13)
@@ -291,7 +232,7 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
-    oga (2.3)
+    oga (1.3.1)
       ast
       ruby-ll (~> 2.1)
     omniauth (1.3.1)
@@ -310,9 +251,8 @@ GEM
     pghero (1.2.2)
       activerecord
     pkg-config (1.1.7)
-    polyamorous (1.3.0)
-      activerecord (>= 3.0)
     powerpack (0.1.1)
+    private_attr (1.1.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -358,18 +298,13 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (11.2.2)
-    ransack (1.7.0)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      i18n
-      polyamorous (~> 1.2)
     recipient_interceptor (0.1.2)
       mail
     redis (3.3.1)
-    reek (4.1.0)
+    reek (3.10.1)
       codeclimate-engine-rb (~> 0.3.1)
-      parser (~> 2.3.1, >= 2.3.1.2)
+      parser (~> 2.3)
+      private_attr (~> 1.1)
       rainbow (~> 2.0)
     ref (2.0.0)
     request_store (1.3.1)
@@ -412,6 +347,14 @@ GEM
     ruby-progressbar (1.7.5)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
+    rubycritic (2.7.1)
+      colorize
+      flay (= 2.6.1)
+      flog (= 4.3.2)
+      launchy (= 2.4.3)
+      parser (~> 2.3)
+      reek (= 3.10.1)
+      virtus (~> 1.0)
     s3_uploader (0.2.2)
       fog-aws (~> 0.9.4)
       mime-types
@@ -518,7 +461,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  activeadmin!
   async_request
   autoprefixer-rails
   awesome_print
@@ -530,8 +472,7 @@ DEPENDENCIES
   capybara
   carrierwave
   chart-js-rails
-  codeclimate-test-reporter
-  codestats-metrics-reporter
+  codestats-metrics-reporter (= 0.1.5)
   coffee-rails
   database_cleaner
   devise
@@ -544,12 +485,10 @@ DEPENDENCIES
   faraday-http-cache
   font-awesome-rails
   foreman
-  formtastic
   formulaic
   friendly_id (~> 5.1.0)
   google-webfonts-rails
   httparty
-  inherited_resources
   jquery-rails
   jquery-turbolinks
   launchy
@@ -561,13 +500,11 @@ DEPENDENCIES
   omniauth-github
   pg
   pghero
-  polyamorous
   pry-rails
   puma
   pundit
   rails (= 4.2.5.1)
   rails_12factor
-  ransack
   recipient_interceptor
   responders (= 2.0)
   rollbar
@@ -575,7 +512,7 @@ DEPENDENCIES
   rspec-rails
   rspec-sidekiq
   rubocop
-  rubycritic!
+  rubycritic
   s3_uploader
   sass-rails
   scss-lint
