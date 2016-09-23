@@ -1,4 +1,4 @@
-.common-list.col-xs-12
+.container.main-container.common-list.col-xs-12
   - @branches.each do |branch|
     .resource
       = link_to branch.name, organization_project_branch_path(@organization, @project, branch), class: 'name'

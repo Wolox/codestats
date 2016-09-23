@@ -238,6 +238,7 @@ h1, h2 {
   z-index: 5;
   background: $light-blue;
   width: 100%;
+  top: 0;
 }
 
 .navbar-logo {
@@ -410,7 +411,6 @@ h1, h2 {
   position: relative;
   padding: 60px 40px;
   display: flex;
-  justify-content: space-around;
   z-index: 3;
   background-image: asset-url('footer_trama.png');
 
@@ -432,6 +432,14 @@ h1, h2 {
       cursor: pointer;
     }
   }
+}
+
+.alerts-box {
+  z-index: 5;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 //lists
