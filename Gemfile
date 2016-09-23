@@ -54,13 +54,6 @@ gem 'active_model_serializers'
 
 gem 'foreman'
 
-# Active Admin
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources'
-gem 'formtastic'
-gem 'ransack'
-gem 'polyamorous'
-
 # Enables Slim templates
 gem 'slim-rails'
 
@@ -174,12 +167,11 @@ group :test do
   gem 'webmock'
 
   # CodeClimate Reporter
-  gem 'codeclimate-test-reporter', require: nil
   gem 'simplecov', require: false
 
-  gem 'rubycritic', git: 'git@github.com:mdesanti/rubycritic.git', branch: 'brakeman'
-
-  gem 'codestats-metrics-reporter', require: nil
+  # CodeStats
+  gem 'rubycritic', require: nil
+  gem 'codestats-metrics-reporter', '0.1.5', require: nil
 end
 
 group :production do
