@@ -7,6 +7,6 @@ class UserProjectsQuery
   end
 
   def fetch
-    @relation.joins(:organization, :teams).where('teams.id in (?)', user.teams.pluck(:id))
+    @relation.joins(:organization, :teams).where('teams.id in (?)', user.teams.pluck(:id)).uniq
   end
 end
