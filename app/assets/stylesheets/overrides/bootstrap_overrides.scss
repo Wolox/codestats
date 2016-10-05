@@ -45,3 +45,25 @@
     background: lighten($light-violet, 50%);
   }
 }
+
+.panel-primary > .panel-heading {
+  background: $light-violet;
+  border: 1px solid $light-violet;
+}
+
+.panel-primary {
+  border: 1px solid $light-violet;
+}
+
+.panel-default > .panel-heading {
+  background: $light-blue;
+  border: 1px solid $light-blue;
+}
+
+.panel-default {
+  border: 1px solid $light-blue;
+}
+
+.panel-body {
+  height: 140px;
+}
