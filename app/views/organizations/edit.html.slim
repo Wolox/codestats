@@ -1,30 +1,37 @@
 .container.main-container
-  h2
+  h2.edit-title-2
     = t('helpers.titles.edit', model: Organization)
   = render 'form', organization: @organization
   .row
-    h4
+    h4.edit-title-4
       = t('organizations.services.title')
     - if @organization.github_url
-      .row
-        = "Github Organization: #{@organization.github_name}"
-        = link_to 'Unlink', unlink_organization_github_link_index_path(@organization), class: 'btn btn-danger pull-right', method: :delete
-        = link_to 'Change', new_organization_github_link_path(@organization), class: 'btn btn-primary pull-right'
-      .row
-        .alert.alert-info
-          = t('organizations.services.bot_access_token.label')
-        = form_for @organization, html: { class: 'form-inline' }  do |f|
-          .form-group
-            = f.label :bot_access_token
-            = f.text_field :bot_access_token, class: 'form-control', required: true
-          = f.submit t('organizations.services.bot_access_token.submit'), class: 'btn btn-primary'
+      .container.edit-wrapper
+        .row
+          h6.edit-title-6
+            | Github Organization:
+          .row-container
+            span.gh-org
+              = @organization.github_name
+            = link_to 'Change', new_organization_github_link_path(@organization), class: 'button-base edit-org-button-1'
+            = link_to 'Unlink', unlink_organization_github_link_index_path(@organization), class: 'button-base-2 edit-org-button-1', method: :delete
+      .container.edit-wrapper
+        .row
+          h6.edit-title-6
+            | Bot access token:
+          .form-group.edit-form-group
+            = form_for @organization, html: { class: 'form-inline' }  do |f|
+              .alert.alert-info
+                = t('organizations.services.bot_access_token.label')
+              .row-container
+                = f.text_field :bot_access_token, class: 'form-input-base form-input-base-sm', required: true
+                = f.submit t('organizations.services.bot_access_token.submit'), class: 'button-base edit-org-button-1'
     - else
-      = link_to 'Link To Github', new_organization_github_link_path(@organization), class: 'btn btn-primary'
-  .row
-    h4
+      = link_to 'Link To Github', new_organization_github_link_path(@organization), class: 'button-base edit-org-button-1'
+  .row.edit-wrapper
+    h4.edit-title-4
       = t('organizations.teams')
-      .pull-right
-        = link_to t('teams.new'), new_organization_team_path(@organization), class: 'btn btn-primary'
+    = link_to t('teams.new'), new_organization_team_path(@organization), class: 'button-base edit-org-button-1'
   .row
     - if @teams.present?
       - @teams.each do |team|

@@ -96,3 +96,65 @@
     background: $light-violet;
   }
 }
+
+.edit-title-2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.edit-title-4 {
+  font-size: 30px;
+  margin-bottom: 40px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    width: 35px;
+    height: 2px;
+    background: $light-violet;
+    left: 0;
+  }
+}
+
+.edit-title-6 {
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.gh-org {
+  color: $light-violet;
+  font-size: 24px;
+  margin: 0 10px;
+}
+
+.edit-org-button-1 {
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 40px;
+  display: inline-block;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+}
+
+.edit-wrapper {
+  margin-bottom: 20px;
+}
+
+.edit-form-group {
+  margin: 0 10px;
+}
+
+.form-input-base-sm {
+  height: 40px;
+  line-height: 40px;
+}
