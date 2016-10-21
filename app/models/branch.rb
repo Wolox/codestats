@@ -4,5 +4,5 @@ class Branch < ActiveRecord::Base
   friendly_id :name, use: :scoped, scope: :project
 
   has_many :metrics, dependent: :destroy
-  validates :name, uniqueness: { scope: :project_id }
+  validates :name, presence: true, uniqueness: { scope: :project_id }
 end
