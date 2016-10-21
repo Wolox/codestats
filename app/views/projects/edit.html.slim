@@ -2,18 +2,20 @@
   .alert.alert-info
     = t('projects.metrics_token', token: @project.metrics_token)
   = form_for [@organization, @project], html: { class: 'form' } do |f|
-    .row
-      = t('projects.teams')
-      = f.collection_select :team_ids, @teams, :id, :name, { include_blank: true }, { id: 'teams-select', multiple: true }
-    .row
-      = t('projects.bot_access_token')
-      = text_field_tag 'project[bot_access_token]', @project.bot_access_token
-    .row
-      = t('projects.reset_token')
-      = check_box_tag 'reset_token'
-    .row
-      = submit_tag t('projects.save'), class: 'save'
-
-    .row.delete-row
-      = link_to t('projects.destroy.text'), organization_project_path(@organization, @project),
-            data: { confirm: t('projects.destroy.confirm', name: @project.name) }, method: :delete, class: 'delete'
+    .container
+      .row
+        h6.edit-title-6
+          | #{t('projects.teams')}:
+        = f.collection_select :team_ids, @teams, :id, :name, { include_blank: true }, { id: 'teams-select', multiple: true }
+      .row
+        h6.edit-title-6
+          | #{t('projects.bot_access_token')}:
+        = text_field_tag 'project[bot_access_token]', @project.bot_access_token, class: 'form-input-base form-input-base-sm'
+      .row
+        h6.edit-title-6
+          | #{t('projects.reset_token')}:
+        = check_box_tag 'reset_token'
+      .row-container
+        = submit_tag t('projects.save'), class: 'button-base edit-org-button-1'
+        = link_to t('projects.destroy.text'), organization_project_path(@organization, @project),
+        data: { confirm: t('projects.destroy.confirm', name: @project.name) }, method: :delete, class: 'button-base-2 edit-org-button-1'
