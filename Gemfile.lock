@@ -248,8 +248,6 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
-    pghero (1.2.2)
-      activerecord
     pkg-config (1.1.7)
     powerpack (0.1.1)
     private_attr (1.1.0)
@@ -499,7 +497,6 @@ DEPENDENCIES
   octokit (~> 4.0)
   omniauth-github
   pg
-  pghero
   pry-rails
   puma
   pundit
@@ -533,6 +530,9 @@ DEPENDENCIES
   versionist
   web-console
   webmock
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.12.5

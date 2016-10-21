@@ -71,9 +71,6 @@ gem 'rollbar'
 
 gem 'meta-tags'
 
-# Postgres Insights
-gem 'pghero'
-
 # SEO Meta Tags
 gem 'metamagic'
 

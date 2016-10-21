@@ -15,7 +15,7 @@ class Organization < ActiveRecord::Base
   end
 
   def admin_user
-    admin_team.users.first
+    admin_team&.users&.first
   end
 
   # Creates the admin team for the organization

@@ -33,7 +33,6 @@ Codestats::Application.routes.draw do
 
   resources :github_pull_requests, only: [:create]
 
-
   # API Endpoints
   api_version(module:  'api/v1', path: { value: 'api/v1' }, defaults: { format: :json }) do
     resources :metrics, only: [:create]
@@ -41,5 +40,4 @@ Codestats::Application.routes.draw do
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: 'sidekiq'
-  mount PgHero::Engine, at: 'pghero'
 end

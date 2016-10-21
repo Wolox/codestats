@@ -3,7 +3,7 @@ Code Stats
 [![Circle CI](https://circleci.com/gh/Wolox/codestats/tree/master.svg?style=svg)](https://circleci.com/gh/Wolox/codestats/tree/master)
 [![Code Climate](https://codeclimate.com/github/Wolox/codestats/badges/gpa.svg)](https://codeclimate.com/github/Wolox/codestats)
 
-Self-hosted open source app to control metrics of your code. Code Stats lets to control the quality of your code by integration your Github pull requests with any metric you want.
+Self-hosted open source app to control metrics of your code. Code Stats lets to control the quality of your code by integrating your Github pull requests with any metric you want.
 
 ## How does it work?
 
@@ -98,17 +98,6 @@ The gems and files needed to make a deploy to AWS with [Capistrano](http://capis
 
 - `ROLLBAR_ACCESS_TOKEN` with the credentials located in the rollbar application.
 - `ROLLBAR_ENVIRONMENT` with the environment name you want to be shown in Rollbar. This is usefull if you have different servers running in Production mode and you want to identify them in Rollbar.
-
-## PGHero Authentication
-
-Set the following variables in your server.
-
-```bash
-  PGHERO_USERNAME=username
-  PGHERO_PASSWORD=password
-```
-
-And you can access the PGHero information by entering `/pghero`.
 
 ## Google Analyitics
 
