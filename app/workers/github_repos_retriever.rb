@@ -3,7 +3,7 @@ class GithubReposRetriever
   def execute(user_id, organization_id)
     fetch_entities(user_id, organization_id)
     repos = service.org_admin_repos(organization.github_name, per_page: 400)
-    selected = repos.select! { |r| !projects&.pluck(:github_repo).include?(r.full_name) }
+    selected = repos.select! { |r| !projects&.pluck(:github_repo).include?(r.full_name) } || repos
     [200, selected.map(&:to_hash)]
   end
 
