@@ -83,6 +83,8 @@ GEM
       railties (> 3.1)
     codeclimate-engine-rb (0.3.1)
       virtus (~> 1.0)
+    codeclimate-test-reporter (1.0.5)
+      simplecov
     coderay (1.1.0)
     codestats-metrics-reporter (0.1.5)
       httparty (~> 0.13)
@@ -385,9 +387,9 @@ GEM
       actionmailer (>= 3.0)
       activesupport (>= 3.0)
       sidekiq (>= 2.3)
-    simplecov (0.11.2)
+    simplecov (0.13.0)
       docile (~> 1.1.0)
-      json (~> 1.8)
+      json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     sinatra (1.4.7)
@@ -470,6 +472,7 @@ DEPENDENCIES
   capybara
   carrierwave
   chart-js-rails
+  codeclimate-test-reporter (~> 1.0.0)
   codestats-metrics-reporter (= 0.1.5)
   coffee-rails
   database_cleaner
