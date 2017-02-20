@@ -100,7 +100,7 @@ gem 'newrelic_rpm'
 gem 'draper'
 
 # Selectize.js
-gem "selectize-rails"
+gem 'selectize-rails'
 
 # Async Requests
 gem 'async_request'
@@ -165,6 +165,7 @@ group :test do
 
   # CodeClimate Reporter
   gem 'simplecov', require: false
+  gem 'codeclimate-test-reporter', '~> 1.0.0'
 
   # CodeStats
   gem 'rubycritic', require: nil
