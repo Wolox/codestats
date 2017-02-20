@@ -2,6 +2,7 @@ Code Stats
 ===============
 [![Circle CI](https://circleci.com/gh/Wolox/codestats/tree/master.svg?style=svg)](https://circleci.com/gh/Wolox/codestats/tree/master)
 [![Code Climate](https://codeclimate.com/github/Wolox/codestats/badges/gpa.svg)](https://codeclimate.com/github/Wolox/codestats)
+[![Test Coverage](https://lima.codeclimate.com/github/Wolox/codestats/badges/coverage.svg)](https://lima.codeclimate.com/github/Wolox/codestats/coverage)
 
 Self-hosted open source app to control metrics of your code. Code Stats lets to control the quality of your code by integrating your Github pull requests with any metric you want.
 
