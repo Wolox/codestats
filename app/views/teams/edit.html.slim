@@ -7,7 +7,7 @@
       .form-group
         label
           | Add user from organization
-        = select_tag 'id', options_from_collection_for_select(@new_users, 'id', 'github_nickname'), class: 'form-control', require: true
+        = select_tag 'id', options_from_collection_for_select(@new_users, 'id', 'email'), class: 'form-control', require: true
       = submit_tag 'Add User', class: 'btn btn-primary'
     = form_tag organization_team_users_path(@organization, @team)
       .form-group
@@ -44,7 +44,7 @@
         h3.panel-title
           = "Projects (#{@team.projects.size})"
       .infinite-bullet-list.panel-body
-        .ul.list-unstyled
+        ul.list-unstyled
           - @team.projects.each do |project|
             li.clearfix
               = project.name
