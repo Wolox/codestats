@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   def create
     authorize organization, :edit?
     project = ProjectManager.new(organization.projects.build).create(github_repo)
-    redirect_to organization_project_path(organization, project),
+    redirect_to edit_organization_project_path(organization, project),
                 flash: { notice: t('projects.create.success') }
   end
 
