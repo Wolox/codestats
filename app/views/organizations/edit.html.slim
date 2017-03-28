@@ -45,6 +45,9 @@
                     span.glyphicon.glyphicon-pencil aria-hidden='true'
             .panel-body
               ul
-                - team.users.each do |user|
+                - team.users.first(5).each do |user|
                   li
                     = user.github_nickname || user.email
+                - if team.users.count > 5
+                  li
+                    | ...
