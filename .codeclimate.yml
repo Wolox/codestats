@@ -1,17 +1,17 @@
 languages:
   Ruby: true
-  JavaScript: true
+  JavaScript: false
 engines:
   rubocop:
     enabled: true
   scss-lint:
-    enabled: true
+    enabled: false
   coffeelint:
-    enabled: true
+    enabled: false
   brakeman:
-    enabled: true
+    enabled: false
   fixme:
-    enabled: true
+    enabled: false
 ratings:
   paths:
   - app/**/*
