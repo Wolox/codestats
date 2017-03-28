@@ -21,7 +21,7 @@
       .panel-heading
         h3.panel-title
           = "Members (#{@team.users.size})"
-      .panel-body
+      .infinite-bullet-list.panel-body
         ul.list-unstyled
           - @team.users.each do |user|
             li.clearfix
@@ -43,8 +43,8 @@
       .panel-heading
         h3.panel-title
           = "Projects (#{@team.projects.size})"
-      .panel-body
-        ul.list-unstyled
+      .infinite-bullet-list.panel-body
+        .ul.list-unstyled
           - @team.projects.each do |project|
             li.clearfix
               = project.name
@@ -52,4 +52,3 @@
                 = link_to 'Remove', organization_team_project_path(@organization, @team, project), class: 'btn btn-xs btn-danger', method: :delete
     - if @team != @organization.admin_team
       = link_to 'Delete Team', organization_team_path(@organization, @team), class: 'btn btn-danger', method: :delete
-

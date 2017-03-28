@@ -479,3 +479,7 @@ h1, h2 {
     font-size: 10vw;
   }
 }
+
+.infinite-bullet-list.panel-body {
+  overflow-y: scroll;
+}
