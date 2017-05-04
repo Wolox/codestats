@@ -51,8 +51,11 @@ class GithubIssueCommenter
   end
 
   def github_service
-    @github_service ||= GithubService.new(
-      project.bot_access_token || project.organization.bot_access_token
-    )
+    @github_service ||= GithubService.new(project_bot_access_token(project))
+  end
+
+  def project_bot_access_token(project)
+    return project.bot_access_token if project.bot_access_token.present?
+    project.organization.bot_access_token
   end
 end
