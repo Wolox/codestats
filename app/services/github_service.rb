@@ -5,7 +5,10 @@ class GithubService < SimpleDelegator
 
   def initialize(access_token)
     raise MissingAccessTokenException unless access_token.present?
-    @client = Octokit::Client.new(access_token: access_token)
+    @client = Octokit::Client.new(
+      access_token: access_token,
+      client_id: Rails.application.secrets.github_client_id,
+      client_secret: Rails.application.secrets.github_client_secret)
     super @client
   end
 
